@@ -1,2 +1,3 @@
 # SpaceCruiser
-Project developed for LPOO 
+
+Project developed for the Object Oriented Programming Laboratory class at MIEIC/FEUP
