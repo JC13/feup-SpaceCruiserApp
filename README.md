@@ -1,5 +1,9 @@
-# LPOO1617_T3G13_SpaceCruiser
-Android game app 
+# LPOO1617_T3G13_SpaceCruiser - Android game app 
+
+Topics:
+ 1 - GUI Design
+ 2 -
+ 3 -
 
 
 ## GUI Design
