@@ -12,31 +12,31 @@
    - Display of the settings menu, where you can for example turn on/off music or sounds
     
 
- MAIN MENU
+ MAIN MENU<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Main%20Menu.png" width="300"><br>
   
- USER NICKNAME 
+ USER NICKNAME<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Get%20User.png" width="300"><br>
  
- GAME SCREEN
+ GAME SCREEN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
  
- GAME OVER SCREEN
+ GAME OVER SCREEN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
 
- HELP SCREEN
+ HELP SCREEN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Help.png" width="300"><br>
 
- HIGH SCORES SCREEN
+ HIGH SCORES SCREEN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/High%20Scores.png" width="300"><br>
 
- SETTINGS SCREEN
+ SETTINGS SCREEN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
 
 
 
-UML
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="2000"><br>
+ UML<br>
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="2000"><br>
 
     
     
@@ -44,14 +44,14 @@ UML
  
 ## Test Design
 
-    Listing of the expected final test cases, and how they intend to test the application:
+   Listing of the expected final test cases, and how they intend to test the application:
     
-    - Test movement of the spaceship in the mobile using the accelerometer
-    - Test to all collisions possible:
-        - between the spaceship and other objects with or without shield
-        - between the spaceship and obstacles
-        - between the spaceship and the bonus
-        - between obstacles         
+   - Test movement of the spaceship in the mobile using the accelerometer
+   - Test to all collisions possible:
+       - between the spaceship and other objects with or without shield
+       - between the spaceship and obstacles
+       - between the spaceship and the bonus
+       - between obstacles         
     
 
     
@@ -90,7 +90,7 @@ SpaceCruiser will be instancied only once and will be the entry point to the gam
 It will set the Game screen with the specified GameView, which will get information to GameModel and process it using GameController.
 
 
-
+# MODEL PACKAGE
 
 # EntityModel
 
@@ -98,7 +98,6 @@ An abstract model representing an entity belonging to a game model.
 
 # ObstacleModel
 A model representing an obstacle.
-
 
 # BonusModel
 A model representing a bonus.
@@ -110,9 +109,7 @@ A model representing the user spaceship.
 A model representing a game.
 
 
-
-
-
+# VIEW PACKAGE
 
 # EntityView
 
@@ -131,8 +128,7 @@ A view representing the player spaceship.
 A view representing the game screen. Draws all the other views and controls the camera. Inherits from libGDX ScreenAdapter
 
 
-
-
+# CONTROLLER PACKAGE
 
 # EntityBody class
 
@@ -140,7 +136,6 @@ Wrapper class that represents an abstract physical body supported by a Box2D bod
 
 # ObstacleBody
 A concrete representation of an EntityBody representing a space obstacle to avoid.
-
 
 # BonusBody 
 A concrete representation of an EntityBody representing a bonus to colect.
