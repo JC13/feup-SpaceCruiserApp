@@ -1,6 +1,6 @@
 # LPOO1617_T3G13_SpaceCruiser - Android game app 
 
-<img src="https://github.com/literallysofia/LPOO1617_T5G6/blob/master/Android%20App/App%20Design/gui/Intro.png" width="150"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="150"><br>
 
 ## GUI Design
     
