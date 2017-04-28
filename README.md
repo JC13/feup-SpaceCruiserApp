@@ -1,7 +1,7 @@
 # LPOO1617_T3G13_SpaceCruiser - Android game app 
 
 
-## GUI Design
+## GUI DESIGN
     
    Listing of the main functionalities present on the GUI:
     
@@ -35,14 +35,14 @@
 
 
 
- UML<br>
+ ## BASIC GAME DESIGN<br>
  <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="2000"><br>
 
     
     
     
  
-## Test Design
+## TEST DESIGN
 
    Listing of the expected final test cases, and how they intend to test the application:
     
@@ -56,15 +56,15 @@
 
     
     
-## Architecture Design
+## ARCHITECTURE DESIGN
 
 As suggested in the classes, the design model used will be the well known MVC (model-view-controller) and each one of these components will be a different package to work with the main game class, SpaceCruiser.
 Each of these functionalities will be implemented by one of the following classes: GameController, GameView or GameModel aswell as a package representing different entities.
 This division of tasks in different packages allows for better debugging and unit testing, as well as organizing the code making it simpler to understand.
 
-# DESIGN PATTERNS
+### DESIGN PATTERNS
 
-# SINGLETON
+### SINGLETON
 A pattern is a general repeatable solution to a commonly occurring problem. A design pattern is a general repeatable solution to a commonly occurring software problem. It is a description or template for how to solve a problem that can be used in many different situations. Hence, a design pattern should be applied if there is the need to. It should almost occur "naturally", as a solution.
 
 This being said, at first we thought the SINGLETON design pattern would be useful to implement since the MVC model requires the implementation of 3 classes, one for each model (in this case GameView, GameModel and GameController). Each one of these will be instantiated only once, aswell as the SpaceCruiser class (extends LibGDX Game), thus singleton seemed like a proper design pattern.
@@ -80,70 +80,67 @@ Even more, a singleton implementation will cause code to be coupled, making it m
 Last but not least, singletons imply a "state" that they carry (since they live "forever" and control their own lifecycle) thus making it even harder to test, since tests should be independent.
 
 
-# CLASS DESCRIPTION    
+## CLASS DESCRIPTION    
 
-# SpaceCruiser
-
+### SpaceCruiser
 Inherits from libGDX Game class.
 The Game abstract class provides an implementation of ApplicationListener to use along with some helper methods to set and handle Screen rendering.
 SpaceCruiser will be instancied only once and will be the entry point to the game.
 It will set the Game screen with the specified GameView, which will get information to GameModel and process it using GameController.
 
 
-# MODEL PACKAGE
+### MODEL PACKAGE
 
-# EntityModel
-
+### EntityModel
 An abstract model representing an entity belonging to a game model.
 
-# ObstacleModel
+### ObstacleModel
 A model representing an obstacle.
 
-# BonusModel
+### BonusModel
 A model representing a bonus.
 
-# SpaceshipModel
+### SpaceshipModel
 A model representing the user spaceship.
 
-# GameModel 
+### GameModel 
 A model representing a game.
 
 
-# VIEW PACKAGE
+### VIEW PACKAGE
 
-# EntityView
+### EntityView
 
 An abstract view capable of holding a sprite with a certain position and rotation. This view is able to update its data based on a entity model.
 
-# ObstacleView
+### ObstacleView
 A view representing the obstacle.
 
-# BonusView
+### BonusView
 A view representing the bonus.
 
-# SpaceshipView
+### SpaceshipView
 A view representing the player spaceship.
 
-# GameView
+### GameView
 A view representing the game screen. Draws all the other views and controls the camera. Inherits from libGDX ScreenAdapter
 
 
-# CONTROLLER PACKAGE
+### CONTROLLER PACKAGE
 
-# EntityBody class
-
+### EntityBody class
 Wrapper class that represents an abstract physical body supported by a Box2D body.
 
-# ObstacleBody
+### ObstacleBody
 A concrete representation of an EntityBody representing a space obstacle to avoid.
 
-# BonusBody 
+### BonusBody 
 A concrete representation of an EntityBody representing a bonus to colect.
 
-# SpaceshipBody 
+### SpaceshipBody 
 A concrete representation of an EntityBody representing the player spaceship.
 
-# GameController
+### GameController
 Controls the physics aspect of the game.    
    
 
