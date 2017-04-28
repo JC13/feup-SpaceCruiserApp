@@ -11,8 +11,9 @@
     - Display a help menu, indicating what are obstacles, bonus and the spaceship aswell as providing basic info on how to interact with them
     - Display of the settings menu, where you can for example turn on/off music or sounds
     
-    
-    <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
+
+  
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
 
 <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
 
@@ -36,8 +37,13 @@
 
     Listing of the expected final test cases, and how they intend to test the application:
     
-    - Test to all collisions possible (e.g: ship and asteroids, ship and a bonus, ship with or without shield...)
-    - Test movement of the spaceship using the mobile
+    - Test movement of the spaceship in the mobile using the accelerometer
+    - Test to all collisions possible:
+        - between the spaceship and other objects with or without shield
+        - between the spaceship and obstacles
+        - between the spaceship and the bonus
+        - between obstacles         
+    
 
     
     
@@ -48,7 +54,24 @@ Each of these functionalities will be implemented by one of the following classe
 This division of tasks in different packages allows for better debugging and unit testing, as well as organizing the code making it simpler to understand.
 
 # DESIGN PATTERNS
-    
+
+# SINGLETON
+A pattern is a general repeatable solution to a commonly occurring problem. A design pattern is a general repeatable solution to a commonly occurring software problem. It is a description or template for how to solve a problem that can be used in many different situations. Hence, a design pattern should be applied if there is the need to. It should almost occur "naturally", as a solution.
+
+This being said, at first we thought the SINGLETON design pattern would be useful to implement since the MVC model requires the implementation of 3 classes, one for each model (in this case GameView, GameModel and GameController). Each one of these will be instantiated only once, aswell as the SpaceCruiser class (extends LibGDX Game), thus singleton seemed like a proper design pattern.
+
+However, analyzing the singleton implementation and doing some research, we can conclude that singleton has 4 major problems.
+
+First of singletons are global instances thus hiding dependencies of the application in the code, instead of exposing them through the interfaces. Making something global to avoid passing it around is a "code smell".
+
+Not only but singletons also violate the standard "single responsability" rule associated with a class. Since the singleton class will take care of whatever she is supposed to but also control her own lifecycle (creation up until end of the program)
+
+Even more, a singleton implementation will cause code to be coupled, making it more confusing and harder to test.
+
+Last but not least, singletons imply a "state" that they carry (since they live "forever" and control their own lifecycle) thus making it even harder to test, since tests should be independent.
+
+
+# CLASS DESCRIPTION    
 ---SpaceCruiser class---
 
 Inherits from libGDX Game class.
