@@ -1,6 +1,22 @@
 # LPOO1617_T3G13_SpaceCruiser - Android game app 
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="150"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Get%20User.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Help.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/High%20Scores.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Main%20Menu.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
+
+
+
+
 
 ## GUI Design
     
