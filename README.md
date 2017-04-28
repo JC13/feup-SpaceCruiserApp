@@ -62,6 +62,7 @@ As suggested in the classes, the design model used will be the well known MVC (m
 Each of these functionalities will be implemented by one of the following classes: GameController, GameView or GameModel aswell as a package representing different entities.
 This division of tasks in different packages allows for better debugging and unit testing, as well as organizing the code making it simpler to understand.
 
+
 ### DESIGN PATTERNS
 
 ### SINGLETON
@@ -89,6 +90,8 @@ SpaceCruiser will be instancied only once and will be the entry point to the gam
 It will set the Game screen with the specified GameView, which will get information to GameModel and process it using GameController.
 
 
+
+
 ### MODEL PACKAGE
 
 ### EntityModel
@@ -105,6 +108,8 @@ A model representing the user spaceship.
 
 ### GameModel 
 A model representing a game.
+
+
 
 
 ### VIEW PACKAGE
@@ -124,6 +129,8 @@ A view representing the player spaceship.
 
 ### GameView
 A view representing the game screen. Draws all the other views and controls the camera. Inherits from libGDX ScreenAdapter
+
+
 
 
 ### CONTROLLER PACKAGE
