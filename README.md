@@ -12,21 +12,30 @@
     - Display of the settings menu, where you can for example turn on/off music or sounds
     
 
+ MAIN MENU
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Main%20Menu.png" width="300"><br>
   
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
+ USER NICKNAME 
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Get%20User.png" width="300"><br>
+ 
+ GAME SCREEN
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
+ 
+ GAME OVER SCREEN
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
+ HELP SCREEN
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Help.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Get%20User.png" width="300"><br>
+ HIGH SCORES SCREEN
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/High%20Scores.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Help.png" width="300"><br>
+ SETTINGS SCREEN
+ <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/High%20Scores.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Main%20Menu.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
-
+UML
 <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="2000"><br>
 
     
