@@ -81,7 +81,8 @@ Last but not least, singletons imply a "state" that they carry (since they live 
 
 
 # CLASS DESCRIPTION    
----SpaceCruiser class---
+
+# SpaceCruiser
 
 Inherits from libGDX Game class.
 The Game abstract class provides an implementation of ApplicationListener to use along with some helper methods to set and handle Screen rendering.
@@ -91,21 +92,21 @@ It will set the Game screen with the specified GameView, which will get informat
 
 
 
----EntityModel class---
+# EntityModel
 
 An abstract model representing an entity belonging to a game model.
 
----ObstacleModel class---
+# ObstacleModel
 A model representing an obstacle.
 
 
----BonusModel class---
+# BonusModel
 A model representing a bonus.
 
----SpaceshipModel class---
+# SpaceshipModel
 A model representing the user spaceship.
 
----GameModel class---
+# GameModel 
 A model representing a game.
 
 
@@ -113,41 +114,41 @@ A model representing a game.
 
 
 
----EntityView class---
+# EntityView
 
 An abstract view capable of holding a sprite with a certain position and rotation. This view is able to update its data based on a entity model.
 
----ObstacleView class---
+# ObstacleView
 A view representing the obstacle.
 
----BonusView class---
+# BonusView
 A view representing the bonus.
 
----SpaceshipView class---
+# SpaceshipView
 A view representing the player spaceship.
 
----GameView class---
+# GameView
 A view representing the game screen. Draws all the other views and controls the camera. Inherits from libGDX ScreenAdapter
 
 
 
 
 
----EntityBody class---
+# EntityBody class
 
 Wrapper class that represents an abstract physical body supported by a Box2D body.
 
----ObstacleBody class---
+# ObstacleBody
 A concrete representation of an EntityBody representing a space obstacle to avoid.
 
 
----BonusBody class---
+# BonusBody 
 A concrete representation of an EntityBody representing a bonus to colect.
 
----SpaceshipBody class---
+# SpaceshipBody 
 A concrete representation of an EntityBody representing the player spaceship.
 
----GameController---
+# GameController
 Controls the physics aspect of the game.    
    
 
