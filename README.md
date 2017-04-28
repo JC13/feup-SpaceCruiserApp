@@ -14,7 +14,7 @@
 
 <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
 
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="1400"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/uml/UML.png" width="2000"><br>
 
 
 
