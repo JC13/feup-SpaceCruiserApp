@@ -3,13 +3,13 @@
 
 ## GUI Design
     
-    Listing of the main functionalities present on the GUI:
+   Listing of the main functionalities present on the GUI:
     
-    - Display of the Main Menu with 3 main options: start new game, see high scores and exit the game
-    - Display of the High Scores showing the top5 highest scores with respective user nickname and the date it was made
-    - Display of the game screen, where the player can control his spaceship and see bonus to colect and obstacles to dodge
-    - Display a help menu, indicating what are obstacles, bonus and the spaceship aswell as providing basic info on how to interact with them
-    - Display of the settings menu, where you can for example turn on/off music or sounds
+   - Display of the Main Menu with 3 main options: start new game, see high scores and exit the game
+   - Display of the High Scores showing the top5 highest scores with respective user nickname and the date it was made
+   - Display of the game screen, where the player can control his spaceship and see bonus to colect and obstacles to dodge
+   - Display a help menu, indicating what are obstacles, bonus and the spaceship aswell as providing basic info on how to interact with them
+   - Display of the settings menu, where you can for example turn on/off music or sounds
     
 
  MAIN MENU
