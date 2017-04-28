@@ -1,16 +1,32 @@
 # LPOO1617_T3G13_SpaceCruiser - Android game app 
 
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game%20Over.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Game.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Get%20User.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Help.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/High%20Scores.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Main%20Menu.png" width="300"><br>
+
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/mockups/Settings.png" width="300"><br>
+
+
+
 
 
 ## GUI Design
     
     Listing of the main functionalities present on the GUI:
     
-    -
-    -
-    -
-    -
-    -
+    - Display of the Main Menu with 3 main options: start new game, see high scores and exit the game
+    - Display of the High Scores showing the top5 highest scores with respective user nickname and the date it was made
+    - Display of the game screen, where the player can control his spaceship and see bonus to colect and obstacles to dodge
+    - Display a help menu, indicating what are obstacles, bonus and the spaceship aswell as providing basic info on how to interact with them
+    - Display of the settings menu, where you can for example turn on/off music or sounds
     
     
     [ADD MOCKUPS HERE]
@@ -22,13 +38,9 @@
 
     Listing of the expected final test cases, and how they intend to test the application:
     
-    -
-    -
-    -
-    -
-    -
-    -
-    -
+    - Test to all collisions possible (e.g: ship and asteroids, ship and a bonus, ship with or without shield...)
+    - Test movement of the spaceship using the mobile
+
     
     
 ## Architecture Design
@@ -36,6 +48,8 @@
 As suggested in the classes, the design model used will be the well known MVC (model-view-controller) and each one of these components will be a different package to work with the main game class, SpaceCruiser.
 Each of these functionalities will be implemented by one of the following classes: GameController, GameView or GameModel aswell as a package representing different entities.
 This division of tasks in different packages allows for better debugging and unit testing, as well as organizing the code making it simpler to understand.
+
+# DESIGN PATTERNS
     
 ---SpaceCruiser class---
 
