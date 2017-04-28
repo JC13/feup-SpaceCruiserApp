@@ -10,7 +10,7 @@ import static com.spacecruiser.game.view.GameView.PIXEL_TO_METER;
 
 
 /**
- * A abstract view capable of holding a sprite with a certain
+ * An abstract view capable of holding a sprite with a certain
  * position and rotation.
  *
  * This view is able to update its data based on a entity model.

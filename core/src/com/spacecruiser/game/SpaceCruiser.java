@@ -12,6 +12,7 @@ import com.spacecruiser.game.view.GameView;
  * The game main class.
  */
 public class SpaceCruiser extends Game {
+
 	private SpriteBatch batch;
 	private AssetManager assetManager;
 
