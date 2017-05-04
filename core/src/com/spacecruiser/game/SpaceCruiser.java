@@ -32,7 +32,7 @@ public class SpaceCruiser extends Game {
      * Starts the game.
      */
     private void startGame() {
-        GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 10);
+        GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 10, 10);
 
         setScreen(new GameView(this, model, new GameController(model)));
     }

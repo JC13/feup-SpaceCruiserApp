@@ -37,12 +37,12 @@ public class GameController {
     /**
      * The rotation speed in radians per second.
      */
-    private static final float ROTATION_SPEED = 5f;
+    private static final float ROTATION_SPEED = 10f;
 
     /**
      * The acceleration impulse in newtons.
      */
-    private static final float ACCELERATION_FORCE = 100f;
+    private static final float ACCELERATION_FORCE = 50f;
 
     /**
      * The physics world controlled by this controller.
@@ -99,6 +99,7 @@ public class GameController {
             ((EntityModel) body.getUserData()).setRotation(body.getAngle());
         }
         this.accelerate(delta);
+
     }
 
     /**
@@ -164,6 +165,14 @@ public class GameController {
     public void accelerate(float delta) {
         shipBody.applyForceToCenter(-(float) sin(shipBody.getAngle()) * ACCELERATION_FORCE * delta, (float) cos(shipBody.getAngle()) * ACCELERATION_FORCE * delta, true);
         ((ShipModel)shipBody.getUserData()).setAccelerating(true);
+    }
+
+
+    /**
+     * Increase current score based on a defined constant
+     */
+    public void increaseScore(float delta, GameModel model){
+        model.setScore((int)(model.getScore() + delta * ACCELERATION_FORCE));
     }
 
 }

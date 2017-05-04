@@ -13,8 +13,10 @@ import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.controller.GameController;
 import com.spacecruiser.game.model.GameModel;
 import com.spacecruiser.game.model.entities.AsteroidModel;
+import com.spacecruiser.game.model.entities.BonusModel;
 import com.spacecruiser.game.view.entities.BigAsteroidView;
 import com.spacecruiser.game.view.entities.MediumAsteroidView;
+import com.spacecruiser.game.view.entities.ShieldView;
 import com.spacecruiser.game.view.entities.ShipView;
 
 import java.util.List;
@@ -45,6 +47,11 @@ public class GameView extends ScreenAdapter {
      * automatically calculated using the screen ratio.
      */
     private static final float VIEWPORT_WIDTH = 20;
+
+    /**
+     *  Adjust camera focus, shitfing spaceship in the game view
+     */
+    private static final float DISTANCE_TO_SPACESHIP = 3;
 
     /**
      * The game this screen belongs to.
@@ -82,6 +89,11 @@ public class GameView extends ScreenAdapter {
     private final MediumAsteroidView mediumAsteroidView;
 
     /**
+     * A shield view to draw the bonus shield.
+     */
+    private final ShieldView bonusShieldView;
+
+    /**
      * A renderer used to debug the physical fixtures.
      */
     private Box2DDebugRenderer debugRenderer;
@@ -110,6 +122,7 @@ public class GameView extends ScreenAdapter {
         shipView = new ShipView(game);
         bigAsteroidView = new BigAsteroidView(game);
         mediumAsteroidView = new MediumAsteroidView(game);
+        bonusShieldView = new ShieldView(game);
 
         camera = createCamera();
     }
@@ -150,6 +163,8 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "controller-back.png" , Texture.class);
         this.game.getAssetManager().load( "controller-knob.png" , Texture.class);
 
+        this.game.getAssetManager().load( "bonus-shield.png" , Texture.class);
+
         this.game.getAssetManager().finishLoading();
     }
 
@@ -163,8 +178,12 @@ public class GameView extends ScreenAdapter {
         handleInputs(delta);
 
         controller.update(delta);
+        controller.increaseScore(delta,model);
 
-        camera.position.set(model.getShip().getX() / PIXEL_TO_METER, model.getShip().getY() / PIXEL_TO_METER, 0);
+        camera.position.set(model.getShip().getX() / PIXEL_TO_METER,
+                            (model.getShip().getY() + DISTANCE_TO_SPACESHIP + ARENA_HEIGHT*PIXEL_TO_METER) / PIXEL_TO_METER,
+                            0);
+
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
 
@@ -181,6 +200,8 @@ public class GameView extends ScreenAdapter {
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(controller.getWorld(), debugCamera);
         }
+
+        System.out.println("Current score: " + model.getScore()); // TEST TO SEE SCORE
     }
 
     /**
@@ -222,6 +243,14 @@ public class GameView extends ScreenAdapter {
             } else if (asteroid.getSize() == AsteroidModel.AsteroidSize.MEDIUM) {
                 mediumAsteroidView.update(asteroid);
                 mediumAsteroidView.draw(game.getBatch());
+            }
+        }
+
+        List<BonusModel> bonus = model.getBonus();
+        for (BonusModel b : bonus) {
+            if (b.getType() == BonusModel.BonusType.SHIELD) {
+                bonusShieldView.update(b);
+                bonusShieldView.draw(game.getBatch());
             }
         }
 
