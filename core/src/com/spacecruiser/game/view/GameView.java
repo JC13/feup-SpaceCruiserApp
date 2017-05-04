@@ -16,6 +16,7 @@ import com.spacecruiser.game.model.entities.AsteroidModel;
 import com.spacecruiser.game.model.entities.BonusModel;
 import com.spacecruiser.game.view.entities.BigAsteroidView;
 import com.spacecruiser.game.view.entities.MediumAsteroidView;
+import com.spacecruiser.game.view.entities.PointsView;
 import com.spacecruiser.game.view.entities.ShieldView;
 import com.spacecruiser.game.view.entities.ShipView;
 
@@ -94,6 +95,11 @@ public class GameView extends ScreenAdapter {
     private final ShieldView bonusShieldView;
 
     /**
+     * Extra points bonus view to draw.
+     */
+    private final PointsView bonusPointsView;
+
+    /**
      * A renderer used to debug the physical fixtures.
      */
     private Box2DDebugRenderer debugRenderer;
@@ -123,6 +129,7 @@ public class GameView extends ScreenAdapter {
         bigAsteroidView = new BigAsteroidView(game);
         mediumAsteroidView = new MediumAsteroidView(game);
         bonusShieldView = new ShieldView(game);
+        bonusPointsView = new PointsView(game);
 
         camera = createCamera();
     }
@@ -164,6 +171,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "controller-knob.png" , Texture.class);
 
         this.game.getAssetManager().load( "bonus-shield.png" , Texture.class);
+        this.game.getAssetManager().load( "bonus-points.png" , Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -247,10 +255,15 @@ public class GameView extends ScreenAdapter {
         }
 
         List<BonusModel> bonus = model.getBonus();
-        for (BonusModel b : bonus) {
+        for (BonusModel b : bonus){
             if (b.getType() == BonusModel.BonusType.SHIELD) {
                 bonusShieldView.update(b);
                 bonusShieldView.draw(game.getBatch());
+            }
+
+            if (b.getType() == BonusModel.BonusType.POINTS){
+                bonusPointsView.update(b);
+                bonusPointsView.draw(game.getBatch());
             }
         }
 

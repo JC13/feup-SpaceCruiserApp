@@ -2,6 +2,7 @@ package com.spacecruiser.game;
 
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.spacecruiser.game.controller.GameController;
@@ -32,7 +33,7 @@ public class SpaceCruiser extends Game {
      * Starts the game.
      */
     private void startGame() {
-        GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 10, 10);
+        GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100, 100);
 
         setScreen(new GameView(this, model, new GameController(model)));
     }

@@ -7,9 +7,12 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.spacecruiser.game.controller.entities.BigAsteroidBody;
 import com.spacecruiser.game.controller.entities.MediumAsteroidBody;
+import com.spacecruiser.game.controller.entities.PointsBody;
+import com.spacecruiser.game.controller.entities.ShieldBody;
 import com.spacecruiser.game.controller.entities.ShipBody;
 import com.spacecruiser.game.model.GameModel;
 import com.spacecruiser.game.model.entities.AsteroidModel;
+import com.spacecruiser.game.model.entities.BonusModel;
 import com.spacecruiser.game.model.entities.EntityModel;
 import com.spacecruiser.game.model.entities.ShipModel;
 
@@ -75,6 +78,17 @@ public class GameController {
             new BigAsteroidBody(world, asteroid);
         else if (asteroid.getSize() == AsteroidModel.AsteroidSize.MEDIUM)
             new MediumAsteroidBody(world, asteroid);
+
+
+        List<BonusModel> bonus = model.getBonus();
+        for (BonusModel b : bonus) {
+            if (b.getType() == BonusModel.BonusType.SHIELD)
+                new ShieldBody(world, b);
+
+            if (b.getType() == BonusModel.BonusType.POINTS)
+                new PointsBody(world, b);
+        }
+
     }
 
     /**
@@ -169,7 +183,7 @@ public class GameController {
 
 
     /**
-     * Increase current score based on a defined constant
+     * Increase current score based on acceleration
      */
     public void increaseScore(float delta, GameModel model){
         model.setScore((int)(model.getScore() + delta * ACCELERATION_FORCE));

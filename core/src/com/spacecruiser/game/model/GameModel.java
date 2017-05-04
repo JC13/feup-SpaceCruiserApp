@@ -28,10 +28,13 @@ public class GameModel {
     private int score;
 
     /**
-     * The asteroids roaming around in this game.
+     * The asteroids to avoid in this game.
      */
     private List<AsteroidModel> asteroids;
 
+    /**
+     * The bonus to be collect in this game.
+     */
     private List<BonusModel> bonus;
 
 
@@ -56,7 +59,7 @@ public class GameModel {
                     random.nextFloat() * GameController.ARENA_WIDTH,
                     random.nextFloat() * GameController.ARENA_HEIGHT,
                     (float) Math.toRadians(random.nextFloat() * 360),
-                    random.nextBoolean()?AsteroidModel.AsteroidSize.BIG:AsteroidModel.AsteroidSize.MEDIUM));
+                    random.nextBoolean() ? AsteroidModel.AsteroidSize.BIG : AsteroidModel.AsteroidSize.MEDIUM));
 
 
         for(int j = 0; j < bonusCount; j++)
@@ -64,7 +67,7 @@ public class GameModel {
                     random.nextFloat() * GameController.ARENA_WIDTH,
                     random.nextFloat() * GameController.ARENA_HEIGHT,
                     (float) Math.toRadians(random.nextFloat() * 360),
-                    BonusModel.BonusType.SHIELD));
+                    random.nextBoolean() ? BonusModel.BonusType.SHIELD : BonusModel.BonusType.POINTS));
 
     }
 

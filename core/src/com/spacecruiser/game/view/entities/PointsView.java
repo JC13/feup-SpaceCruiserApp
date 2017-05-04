@@ -5,30 +5,30 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.spacecruiser.game.SpaceCruiser;
 
 /**
- * A view representing a shield bonus.
+ * A view representing extra points bonus.
  */
 
-public class ShieldView extends EntityView {
+public class PointsView extends EntityView {
 
     /**
-     * Constructs a shield bonus view.
+     * Constructs a bonus points view.
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    public ShieldView(SpaceCruiser game) {
+    public PointsView(SpaceCruiser game) {
         super(game);
     }
 
     /**
-     * Creates a sprite representing this shield.
+     * Creates a sprite representing this extra points.
      *
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
-     * @return the sprite representing this shield
+     * @return the sprite representing this bonus
      */
     public Sprite createSprite(SpaceCruiser game) {
-        Texture texture = game.getAssetManager().get("bonus-shield.png");
+        Texture texture = game.getAssetManager().get("bonus-points.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
