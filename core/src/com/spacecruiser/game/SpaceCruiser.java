@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.spacecruiser.game.controller.GameController;
 import com.spacecruiser.game.model.GameModel;
 import com.spacecruiser.game.view.GameView;
+import com.spacecruiser.game.view.MainMenu;
 
 /**
  * The game main class.
@@ -26,16 +27,19 @@ public class SpaceCruiser extends Game {
 		batch = new SpriteBatch();
 		assetManager = new AssetManager();
 
-        startGame();
+        //begin with menu screen
+        setScreen(new MainMenu(this));
+
 	}
 
     /**
      * Starts the game.
      */
-    private void startGame() {
+    public void startGame() {
         GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100, 100);
 
         setScreen(new GameView(this, model, new GameController(model)));
+
     }
 
     /**
