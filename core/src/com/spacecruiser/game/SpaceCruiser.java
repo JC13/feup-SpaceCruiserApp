@@ -32,15 +32,7 @@ public class SpaceCruiser extends Game {
 
 	}
 
-    /**
-     * Starts the game.
-     */
-    public void startGame() {
-        GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100, 100);
 
-        setScreen(new GameView(this, model, new GameController(model)));
-
-    }
 
     /**
      * Disposes of all assets.
