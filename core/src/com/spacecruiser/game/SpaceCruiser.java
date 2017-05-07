@@ -2,13 +2,10 @@ package com.spacecruiser.game;
 
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.spacecruiser.game.controller.GameController;
-import com.spacecruiser.game.model.GameModel;
-import com.spacecruiser.game.view.GameView;
-import com.spacecruiser.game.view.MainMenu;
+import com.spacecruiser.game.view.screens.MainMenu;
+import com.spacecruiser.game.view.screens.Splash;
 
 /**
  * The game main class.
@@ -28,7 +25,7 @@ public class SpaceCruiser extends Game {
 		assetManager = new AssetManager();
 
         //begin with menu screen
-        setScreen(new MainMenu(this));
+        setScreen(new Splash(this));
 
 	}
 

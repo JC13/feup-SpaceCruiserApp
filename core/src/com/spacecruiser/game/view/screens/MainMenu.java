@@ -1,7 +1,8 @@
-package com.spacecruiser.game.view;
+package com.spacecruiser.game.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,7 +27,7 @@ public class MainMenu extends ScreenAdapter {
 
 
     private TextButton.TextButtonStyle btnStyle;
-    private TextButton playBtn, exitBtn;
+    private TextButton playBtn, optionsBtn, exitBtn;
 
 
 
@@ -51,6 +52,8 @@ public class MainMenu extends ScreenAdapter {
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         Gdx.input.setInputProcessor(stage);
+        drawBackground();
+
         stage.act();
         stage.draw();
     }
@@ -59,31 +62,42 @@ public class MainMenu extends ScreenAdapter {
     @Override
     public void show(){
 
-        drawBackground();
-
         btnStyle = new TextButton.TextButtonStyle();
         btnStyle.font = new BitmapFont();
-        btnStyle.fontColor = com.badlogic.gdx.graphics.Color.BLUE;
+        btnStyle.fontColor = Color.TEAL;
+
 
         playBtn = new TextButton("Play Game", btnStyle);
-        playBtn.pad(10);
         playBtn.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent e, float x, float y){
                startGame();
            }
         });
+        playBtn.pad(10);
         table.add(playBtn);
         table.row();
 
+
+        optionsBtn = new TextButton("Options", btnStyle);
+        optionsBtn.addListener(new ClickListener(){
+           @Override
+            public void clicked(InputEvent e, float x, float y){
+               System.out.println("Options clicked!");
+           }
+        });
+        optionsBtn.pad(10);
+        table.add(optionsBtn);
+        table.row();
+
         exitBtn = new TextButton("Exit", btnStyle);
-        exitBtn.pad(20);
         exitBtn.addListener(new ClickListener(){
            @Override
             public void clicked(InputEvent e, float x, float y){
                Gdx.app.exit();
            }
         });
+        exitBtn.pad(10);
         table.add(exitBtn);
 
         stage.addActor(table);

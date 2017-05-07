@@ -1,4 +1,4 @@
-package com.spacecruiser.game.view;
+package com.spacecruiser.game.view.screens;
 
 
 import com.badlogic.gdx.Gdx;
