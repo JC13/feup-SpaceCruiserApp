@@ -34,7 +34,7 @@ public class MainMenu extends ScreenAdapter {
     public MainMenu(SpaceCruiser game){
 
         this.game = game;
-        loadAssets();
+        //loadAssets();
 
         this.stage = new Stage();
         this.table = new Table();

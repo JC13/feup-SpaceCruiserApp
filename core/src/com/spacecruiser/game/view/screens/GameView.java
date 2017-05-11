@@ -123,7 +123,7 @@ public class GameView extends ScreenAdapter {
         this.model = model;
         this.controller = controller;
 
-        loadAssets();
+        //loadAssets();
 
         shipView = new ShipView(game);
         bigAsteroidView = new BigAsteroidView(game);

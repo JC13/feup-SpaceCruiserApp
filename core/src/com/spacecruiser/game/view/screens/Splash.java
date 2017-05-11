@@ -55,7 +55,17 @@ public class Splash extends ScreenAdapter{
         splashActor.setFillParent(true);
 
 
-        SequenceAction actions = new SequenceAction(sequence(fadeIn(2f), delay(1.5f), fadeOut(2f), run(new Runnable(){
+        SequenceAction actions = new SequenceAction(sequence(fadeIn(2f), delay(1.5f),
+                run(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.print("Beginning loading assets\n");
+                        loadAssets();
+                        System.out.print("Finished loading assets\n");
+                    }
+                }),
+                fadeOut(2f),
+                run(new Runnable(){
             @Override
             public void run(){
                 game.setScreen(new MainMenu(game));
@@ -64,6 +74,31 @@ public class Splash extends ScreenAdapter{
 
         splashActor.addAction(actions);
         stage.addActor(splashActor);
+    }
+
+
+    private void loadAssets() {
+        this.game.getAssetManager().load( "spaceship-no-thrust.png" , Texture.class);
+        this.game.getAssetManager().load( "spaceship-thrust.png" , Texture.class);
+
+        this.game.getAssetManager().load( "asteroid-big.png" , Texture.class);
+        this.game.getAssetManager().load( "asteroid-medium.png" , Texture.class);
+
+        this.game.getAssetManager().load( "background.png" , Texture.class);
+
+        this.game.getAssetManager().load( "health-bar.png" , Texture.class);
+        this.game.getAssetManager().load( "controller-back.png" , Texture.class);
+        this.game.getAssetManager().load( "controller-knob.png" , Texture.class);
+
+        this.game.getAssetManager().load( "bonus-shield.png" , Texture.class);
+        this.game.getAssetManager().load( "bonus-points.png" , Texture.class);
+
+        this.game.getAssetManager().load( "exit-button.png" , Texture.class);
+        this.game.getAssetManager().load( "play-button.jpg" , Texture.class);
+
+        this.game.getAssetManager().load( "main-menu.png" , Texture.class);
+
+        this.game.getAssetManager().finishLoading();
     }
 
 
