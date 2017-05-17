@@ -28,7 +28,7 @@ public class MediumAsteroidView extends EntityView{
      * @return the sprite representing this asteroid
      */
     public Sprite createSprite(SpaceCruiser game) {
-        Texture texture = game.getAssetManager().get("asteroid-medium.png");
+        Texture texture = game.getAssetManager().get("images/asteroid-medium.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
     }

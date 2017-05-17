@@ -27,7 +27,7 @@ public class BigAsteroidView extends EntityView{
      * @return the sprite representing this bonus shield
      */
     public Sprite createSprite(SpaceCruiser game) {
-        Texture texture = game.getAssetManager().get("asteroid-big.png");
+        Texture texture = game.getAssetManager().get("images/asteroid-big.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
     }

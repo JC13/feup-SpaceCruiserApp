@@ -28,7 +28,7 @@ public class PointsView extends EntityView {
      * @return the sprite representing this bonus
      */
     public Sprite createSprite(SpaceCruiser game) {
-        Texture texture = game.getAssetManager().get("bonus-points.png");
+        Texture texture = game.getAssetManager().get("images/bonus-points.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
     }

@@ -45,7 +45,7 @@ public class GameController {
     /**
      * The acceleration impulse in newtons.
      */
-    private static final float ACCELERATION_FORCE = 50f;
+    private static final float ACCELERATION_FORCE = 30f;
 
     /**
      * The physics world controlled by this controller.

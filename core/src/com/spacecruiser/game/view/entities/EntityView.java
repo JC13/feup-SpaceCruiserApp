@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.model.entities.EntityModel;
 
-import static com.spacecruiser.game.view.screens.GameView.PIXEL_TO_METER;
+import static com.spacecruiser.game.view.GUI.GameView.PIXEL_TO_METER;
 
 
 /**

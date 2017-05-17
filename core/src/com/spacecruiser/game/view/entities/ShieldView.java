@@ -28,7 +28,7 @@ public class ShieldView extends EntityView {
      * @return the sprite representing this shield
      */
     public Sprite createSprite(SpaceCruiser game) {
-        Texture texture = game.getAssetManager().get("bonus-shield.png");
+        Texture texture = game.getAssetManager().get("images/bonus-shield.png");
 
         return new Sprite(texture, texture.getWidth(), texture.getHeight());
     }

@@ -74,7 +74,7 @@ public class ShipView extends EntityView {
      * @return the texture used when the ship is not accelerating
      */
     private TextureRegion createNotAcceleratingRegion(SpaceCruiser game) {
-        Texture noThrustTexture = game.getAssetManager().get("spaceship-no-thrust.png");
+        Texture noThrustTexture = game.getAssetManager().get("images/spaceship-no-thrust.png");
         return new TextureRegion(noThrustTexture, noThrustTexture.getWidth(), noThrustTexture.getHeight());
     }
 
@@ -86,7 +86,7 @@ public class ShipView extends EntityView {
      * @return the animation used when the ship is accelerating
      */
     private Animation<TextureRegion> createAcceleratingAnimation(SpaceCruiser game) {
-        Texture thrustTexture = game.getAssetManager().get("spaceship-thrust.png");
+        Texture thrustTexture = game.getAssetManager().get("images/spaceship-thrust.png");
         TextureRegion[][] thrustRegion = TextureRegion.split(thrustTexture, thrustTexture.getWidth() / 4, thrustTexture.getHeight());
 
         TextureRegion[] frames = new TextureRegion[4];

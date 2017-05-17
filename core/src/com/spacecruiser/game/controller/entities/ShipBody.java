@@ -18,7 +18,7 @@ public class ShipBody extends EntityBody {
     public ShipBody(World world, ShipModel model) {
         super(world, model);
 
-        float density = 0.5f, friction = 0.4f, restitution = 0.5f;
+        float density = 1f, friction = 1f, restitution = 0.5f;
         int width = 75, height = 75;
 
         // Left winglet

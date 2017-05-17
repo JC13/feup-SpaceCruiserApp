@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.spacecruiser.game.model.entities.EntityModel;
 
-import static com.spacecruiser.game.view.screens.GameView.PIXEL_TO_METER;
+import static com.spacecruiser.game.view.GUI.GameView.PIXEL_TO_METER;
 
 
 /**
