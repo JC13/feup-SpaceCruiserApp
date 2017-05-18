@@ -154,7 +154,7 @@ public class GameView extends ScreenAdapter {
         bonusPointsView = new PointsView(game);
 
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT);
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(Gdx.graphics.getWidth() - BTN_WIDTH).padTop(Gdx.graphics.getHeight() - BTN_HEIGHT);
         stage.addActor(table);
 
         camera = createCamera();
@@ -200,6 +200,7 @@ public class GameView extends ScreenAdapter {
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
 
+
         Gdx.gl.glClearColor( 103/255f, 69/255f, 117/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
@@ -218,10 +219,7 @@ public class GameView extends ScreenAdapter {
         stage.act();
         stage.draw();
 
-        System.out.println("Current score: " + model.getScore()); // TEST TO SEE SCORE
-        hud.setScore(model.getScore());
-        hud.getStage().act();
-        hud.getStage().draw();
+        hud.update(model.getScore());
 
     }
 
@@ -261,7 +259,8 @@ public class GameView extends ScreenAdapter {
         backBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.setScreen(new MainMenu(game));
+                game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
+                game.getScreenManager().drawScreen();
             }
         });
     }
@@ -308,7 +307,4 @@ public class GameView extends ScreenAdapter {
         game.getBatch().draw(background, 0, 0, 0, 0, (int)(ARENA_WIDTH / PIXEL_TO_METER), (int) (ARENA_HEIGHT / PIXEL_TO_METER));
     }
 
-    public int getScore(){
-        return this.model.getScore();
-    }
 }

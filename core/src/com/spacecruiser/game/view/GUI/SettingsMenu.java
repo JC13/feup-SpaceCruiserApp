@@ -24,9 +24,14 @@ import com.spacecruiser.game.SpaceCruiser;
 
 public class SettingsMenu extends ScreenAdapter{
 
-
+    /**
+     *  Default slider width.
+     */
     private final static float SLIDER_WIDTH = 300;
 
+    /**
+     *  Default slider height.
+     */
     private final static float SLIDER_HEIGHT = 100;
 
     /**
@@ -59,7 +64,9 @@ public class SettingsMenu extends ScreenAdapter{
      */
     private Slider musicVolume;
 
-
+    /**
+     *  The back button.
+     */
     private ImageButton backBtn;
 
 
@@ -114,7 +121,8 @@ public class SettingsMenu extends ScreenAdapter{
         backBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.setScreen(new MainMenu(game));
+                game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
+                game.getScreenManager().drawScreen();
             }
         });
     }

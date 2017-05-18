@@ -3,22 +3,35 @@ package com.spacecruiser.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.spacecruiser.game.view.GUI.Splash;
+import com.spacecruiser.game.view.GUI.ScreenManager;
 
 /**
  * The game main class.
  */
 public class SpaceCruiser extends Game {
 
-
+    /**
+     *  A sprite batch to draw components, passed along the screens.
+     */
 	private SpriteBatch batch;
-	private AssetManager assetManager;
+
+    /**
+     *  An asset manager to load assets and dispose of them at the end of the applicaton.
+     */
+    private AssetManager assetManager;
+
+    /**
+     *  A music player that plays the main theme.
+     */
     private Music soundtrack;
-	private Screen gameScreen;
+
+    /**
+     *  The screen manager, controling what needs to be rendered by the game.
+     */
+    private ScreenManager screenManager;
 
     /**
      * Creates the game. Initializes the sprite batch and asset manager.
@@ -26,16 +39,15 @@ public class SpaceCruiser extends Game {
      */
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		assetManager = new AssetManager();
-        gameScreen = null;
-
+        batch = new SpriteBatch();
+        assetManager = new AssetManager();
+        screenManager = new ScreenManager(this);
 
         createMusicPlayer();
 
         //begin with splash screen
-        this.setScreen(new Splash(this));
-	}
+        screenManager.drawScreen();
+    }
 
 
 
@@ -51,6 +63,7 @@ public class SpaceCruiser extends Game {
 
     /**
      *  Creates the music player responsible for playing the game soundtrack.
+     *  Sets volume to half power, indicates that music should loop and plays it.
      */
 	public void createMusicPlayer(){
         soundtrack = Gdx.audio.newMusic(Gdx.files.internal("audio/dubstep.mp3"));
@@ -77,9 +90,14 @@ public class SpaceCruiser extends Game {
 		return batch;
 	}
 
-	public Screen getGameScreen(){ return gameScreen;}
-
-    public void setGameScreen(Screen gameScreen){ this.gameScreen = gameScreen; }
+    /**
+     *  Returns the screen manager.
+     *
+     * @return the screen manager.
+     */
+    public ScreenManager getScreenManager(){
+        return  this.screenManager;
+    }
 
     /**
      *  Returns the music player responsible for playing the game soundtrack.

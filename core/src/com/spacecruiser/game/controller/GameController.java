@@ -48,6 +48,11 @@ public class GameController {
     private static final float ACCELERATION_FORCE = 30f;
 
     /**
+     *  Minimum score per render.
+     */
+    private static final int MIN_SCORE_INC = 2;
+
+    /**
      * The physics world controlled by this controller.
      */
     private final World world;
@@ -186,7 +191,7 @@ public class GameController {
      * Increase current score based on acceleration
      */
     public void increaseScore(float delta, GameModel model){
-        model.setScore((int)(model.getScore() + delta * ACCELERATION_FORCE));
+        model.setScore(model.getScore() + (delta * ACCELERATION_FORCE)/10);
     }
 
 }

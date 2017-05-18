@@ -2,7 +2,6 @@ package com.spacecruiser.game.view.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -65,7 +64,9 @@ public class Splash extends ScreenAdapter{
         stage.draw();
     }
 
-
+    /**
+     * Called when this screen becomes the current screen for the game.
+     */
     @Override
     public void show(){
 
@@ -86,7 +87,8 @@ public class Splash extends ScreenAdapter{
                 run(new Runnable(){
                      @Override
                     public void run(){
-                        game.setScreen(new MainMenu(game));
+                         game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
+                         game.getScreenManager().drawScreen();
                     }
         })));
 
@@ -94,7 +96,9 @@ public class Splash extends ScreenAdapter{
         stage.addActor(splashActor);
     }
 
-
+    /**
+     *  Loads all the game assets using the game asset manager.
+     */
     private void loadAssets() {
         this.game.getAssetManager().load( "images/spaceship-no-thrust.png" , Texture.class);
         this.game.getAssetManager().load( "images/spaceship-thrust.png" , Texture.class);
@@ -129,9 +133,7 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "skins/uiskin.atlas" , TextureAtlas.class);
 
 
-
         this.game.getAssetManager().finishLoading();
     }
-
 
 }

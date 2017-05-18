@@ -7,19 +7,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
-import com.spacecruiser.game.controller.GameController;
-import com.spacecruiser.game.model.GameModel;
-
-import static com.spacecruiser.game.controller.GameController.ARENA_HEIGHT;
 
 /**
  * A view for the main menu.
@@ -57,7 +51,9 @@ public class MainMenu extends ScreenAdapter {
      */
     private ImageButton playBtn, settingsBtn, exitBtn;
 
-
+    /**
+     *  A camera to center on the menu.
+     */
     private Camera camera;
 
 
@@ -98,7 +94,9 @@ public class MainMenu extends ScreenAdapter {
 
 
 
-
+    /**
+     * Called when this screen becomes the current screen for the game.
+     */
     @Override
     public void show(){
 
@@ -116,7 +114,9 @@ public class MainMenu extends ScreenAdapter {
         stage.addActor(table);
     }
 
-
+    /**
+     *  Creates this menu camera.
+     */
     private void createCamera() {
         OrthographicCamera camera = new OrthographicCamera(GameView.VIEWPORT_WIDTH / GameView.PIXEL_TO_METER,
                 GameView.VIEWPORT_WIDTH / GameView.PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
@@ -128,6 +128,9 @@ public class MainMenu extends ScreenAdapter {
         this.camera = camera;
     }
 
+    /**
+     *  Creates the play button.
+     */
     public void createPlayBtn(){
         playBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Hover.png"))));
@@ -140,6 +143,9 @@ public class MainMenu extends ScreenAdapter {
         });
     }
 
+    /**
+     *  Creates the settings button.
+     */
     public void createSettingsBtn(){
         settingsBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/YellowButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/YellowButton-Hover.png"))));
@@ -147,11 +153,15 @@ public class MainMenu extends ScreenAdapter {
         settingsBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.setScreen(new SettingsMenu(game));
+                game.getScreenManager().update(ScreenManager.ActiveScreen.SETTINGS);
+                game.getScreenManager().drawScreen();
             }
         });
     }
 
+    /**
+     *  Creates the exit button
+     */
     public void createExitBtn(){
         exitBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/RedButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/RedButton-Hover.png"))));
@@ -168,13 +178,8 @@ public class MainMenu extends ScreenAdapter {
      * Starts the game.
      */
     private void startGame() {
-        if(game.getGameScreen() == null){
-            GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100, 100);
-            GameView gameView = new GameView(game, model, new GameController(model));
-            game.setGameScreen(gameView);
-        }
-
-        game.setScreen(game.getGameScreen());
+        game.getScreenManager().update(ScreenManager.ActiveScreen.GAME);
+        game.getScreenManager().drawScreen();
     }
 
     /**

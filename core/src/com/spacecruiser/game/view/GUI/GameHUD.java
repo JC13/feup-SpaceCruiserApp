@@ -20,8 +20,6 @@ public class GameHUD {
     private final static float HUD_VIEWPORT_WIDTH = 100;
     private final static float HUD_VIEWPORT_HEIGHT = 100;
 
-    private final static float LABEL_WIDTH = 10;
-    private final static float LABEL_HEIGHT = 10;
 
     private Stage stage;
     private Viewport viewport;
@@ -39,16 +37,20 @@ public class GameHUD {
         stage = new Stage(viewport);
         table = new Table();
         table.top().setFillParent(true);
-        table.setDebug(true);
+        //table.setDebug(true);
         table.add(scoreLbl).expandX();
         table.add(scoreInfo).expandX();
         stage.addActor(table);
     }
 
-    public Stage getStage(){return stage;}
 
-    public void setScore(int score){
-        this.score = score;
+    public void update(float score){
+        this.score = (int)score;
+
+        scoreInfo.setText(String.format("%04d",this.score));
+
+        stage.act();
+        stage.draw();
     }
 
 }

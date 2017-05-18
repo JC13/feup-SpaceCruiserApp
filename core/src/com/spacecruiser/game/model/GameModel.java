@@ -25,7 +25,7 @@ public class GameModel {
     /**
      *  Points earned
      */
-    private int score;
+    private float score;
 
     /**
      * The asteroids to avoid in this game.
@@ -85,13 +85,13 @@ public class GameModel {
      *
      *  @return the score
      */
-    public int getScore(){return score;}
+    public float getScore(){return score;}
 
     /**
      * Set the score.
      *
      */
-    public void setScore(int points){ this.score = points;}
+    public void setScore(float points){ this.score = points;}
 
     /**
      * Returns the asteroids.
