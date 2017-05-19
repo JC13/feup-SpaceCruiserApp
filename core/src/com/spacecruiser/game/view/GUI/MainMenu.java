@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
 /**
@@ -41,10 +42,6 @@ public class MainMenu extends ScreenAdapter {
      */
     private Stage stage;
 
-    /**
-     *  The table that contains the buttons.
-     */
-    private Table table;
 
     /**
      *  The main menu buttons.
@@ -57,6 +54,7 @@ public class MainMenu extends ScreenAdapter {
     private Camera camera;
 
 
+
     /**
      * Creates this screen.
      *
@@ -64,9 +62,7 @@ public class MainMenu extends ScreenAdapter {
      */
     public MainMenu(SpaceCruiser game){
         this.game = game;
-        this.stage = new Stage();
-        this.table = new Table();
-        table.setFillParent(true);
+        createStage();
         createCamera();
     }
 
@@ -95,10 +91,12 @@ public class MainMenu extends ScreenAdapter {
 
 
     /**
-     * Called when this screen becomes the current screen for the game.
+     *  Creates this menu stage.
      */
-    @Override
-    public void show(){
+    public void createStage(){
+        this.stage = new Stage();
+        Table table = new Table();
+        table.setFillParent(true);
 
         createPlayBtn();
         table.add(playBtn).size(BTN_WIDTH,BTN_HEIGHT);
@@ -138,7 +136,7 @@ public class MainMenu extends ScreenAdapter {
         playBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                startGame();
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
             }
         });
     }
@@ -153,8 +151,7 @@ public class MainMenu extends ScreenAdapter {
         settingsBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.getScreenManager().update(ScreenManager.ActiveScreen.SETTINGS);
-                game.getScreenManager().drawScreen();
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.SETTINGS);
             }
         });
     }
@@ -174,13 +171,7 @@ public class MainMenu extends ScreenAdapter {
         });
     }
 
-    /**
-     * Starts the game.
-     */
-    private void startGame() {
-        game.getScreenManager().update(ScreenManager.ActiveScreen.GAME);
-        game.getScreenManager().drawScreen();
-    }
+
 
     /**
      * Draws the background.

@@ -87,8 +87,7 @@ public class Splash extends ScreenAdapter{
                 run(new Runnable(){
                      @Override
                     public void run(){
-                         game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
-                         game.getScreenManager().drawScreen();
+                         game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.MENU);
                     }
         })));
 

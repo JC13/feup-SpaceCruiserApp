@@ -54,10 +54,6 @@ public class SettingsMenu extends ScreenAdapter{
      */
     private Stage stage;
 
-    /**
-     *  The table that contains the buttons.
-     */
-    private Table table;
 
     /**
      *  The volume slider.
@@ -72,9 +68,7 @@ public class SettingsMenu extends ScreenAdapter{
 
     public SettingsMenu(SpaceCruiser game){
         this.game = game;
-        this.stage = new Stage();
-        this.table = new Table();
-        table.setFillParent(true);
+        createStage();
     }
 
     /**
@@ -99,8 +93,11 @@ public class SettingsMenu extends ScreenAdapter{
         game.getMusicPlayer().setVolume(musicVolume.getValue());
     }
 
-    @Override
-    public void show(){
+
+    public void createStage(){
+        this.stage = new Stage();
+        Table table = new Table();
+        table.setFillParent(true);
 
         createVolumeSlider();
         table.add(musicVolume).size(SLIDER_WIDTH,SLIDER_HEIGHT);
@@ -121,8 +118,7 @@ public class SettingsMenu extends ScreenAdapter{
         backBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
-                game.getScreenManager().drawScreen();
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.MENU);
             }
         });
     }

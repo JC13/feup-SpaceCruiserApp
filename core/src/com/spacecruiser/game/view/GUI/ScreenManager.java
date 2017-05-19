@@ -5,7 +5,8 @@ import com.spacecruiser.game.controller.GameController;
 import com.spacecruiser.game.model.GameModel;
 
 /**
- *  A state machine that manages the screen to be rendered.
+ *  A screen manager that manages the screen to be rendered and saves a copy of each screen
+ *  to avoid creating and destroying java objects (high cost action).
  */
 
 public class ScreenManager {
@@ -26,9 +27,14 @@ public class ScreenManager {
     private GameView gameView;
 
     /**
-     *  The current screen to be rendered by the game.
+     *  The main menu. Saving it to avoid creating new menu objects.
      */
-    private ActiveScreen screenToRender;
+    private MainMenu mainmenu;
+
+    /**
+     *  The settings menu. Saving it to avoid creating new settings menu objects.
+     */
+    private SettingsMenu settingsmenu;
 
 
     /**
@@ -38,36 +44,36 @@ public class ScreenManager {
      */
     public ScreenManager(SpaceCruiser game){
         this.game = game;
+
         this.gameView = null;
-        screenToRender = ActiveScreen.SPLASH;
+        this.mainmenu = null;
+        this.settingsmenu = null;
     }
 
-    /**
-     *  Sets the screen to render to the screen passed as argument
-     *
-     * @param screen the screen to be rendered
-     */
-    public void update(ActiveScreen screen){
-        screenToRender = screen;
-    }
 
     /**
      *  Sets the screen to be rendered by the game.
      */
-    public void drawScreen(){
+    public void drawScreen(ActiveScreen screen){
 
-        switch(screenToRender){
+        switch(screen){
 
             case SPLASH:
                 game.setScreen(new Splash(game));
                 break;
 
             case MENU:
-                game.setScreen(new MainMenu(game));
+                if(mainmenu == null){
+                    mainmenu = new MainMenu(game);
+                }
+                game.setScreen(this.mainmenu);
                 break;
 
             case SETTINGS:
-                game.setScreen(new SettingsMenu(game));
+                if(settingsmenu == null){
+                    settingsmenu = new SettingsMenu(game);
+                }
+                game.setScreen(this.settingsmenu);
                 break;
 
             case GAME:

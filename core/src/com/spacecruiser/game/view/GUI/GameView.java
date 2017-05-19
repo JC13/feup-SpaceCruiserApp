@@ -166,7 +166,8 @@ public class GameView extends ScreenAdapter {
      * @return the camera
      */
     private OrthographicCamera createCamera() {
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
+        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,
+                VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
@@ -259,8 +260,7 @@ public class GameView extends ScreenAdapter {
         backBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.getScreenManager().update(ScreenManager.ActiveScreen.MENU);
-                game.getScreenManager().drawScreen();
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.MENU);
             }
         });
     }

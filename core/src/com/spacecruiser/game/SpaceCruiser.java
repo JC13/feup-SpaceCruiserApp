@@ -13,6 +13,9 @@ import com.spacecruiser.game.view.GUI.ScreenManager;
  */
 public class SpaceCruiser extends Game {
 
+    public final static float VIEWPORT_WIDTH = 1400;
+    public final static float VIEWPORT_HEIGTH = 900;
+
     /**
      *  A sprite batch to draw components, passed along the screens.
      */
@@ -46,7 +49,7 @@ public class SpaceCruiser extends Game {
         createMusicPlayer();
 
         //begin with splash screen
-        screenManager.drawScreen();
+        screenManager.drawScreen(ScreenManager.ActiveScreen.SPLASH);
     }
 
 
