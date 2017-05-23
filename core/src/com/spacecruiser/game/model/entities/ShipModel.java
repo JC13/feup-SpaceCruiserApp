@@ -39,4 +39,8 @@ public class ShipModel extends EntityModel {
     public boolean isAccelerating() {
         return accelerating;
     }
+
+    public void setShielded(boolean isShielded){this.shielded = isShielded;}
+
+    public boolean isShielded(){return this.shielded;}
 }

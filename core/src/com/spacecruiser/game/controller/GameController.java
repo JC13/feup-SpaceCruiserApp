@@ -205,13 +205,32 @@ public class GameController implements ContactListener{
     public void ptsShipCollision(Body pts, Body ship){
         PointsModel ptsModel = ((PointsModel) pts.getUserData());
         accumulatedPts += ptsModel.getValue();
+        model.increasePtsPicked();
         ptsModel.setToBeRemoved();
+    }
+
+    public void shieldShipCollision(Body shield, Body ship){
+        ((ShipModel) ship.getUserData()).setShielded(true);
+        ((ShieldModel) shield.getUserData()).setToBeRemoved();
+        model.increaseShieldsPicked();
+    }
+
+    public void asteroidsShipCollision(Body asteroid, Body ship){
+        if(((ShipModel)ship.getUserData()).isShielded()){
+            ((AsteroidModel)asteroid.getUserData()).setToBeRemoved();
+            ((ShipModel)ship.getUserData()).setShielded(false);
+            model.increaseAsteroidsDestroyed();
+        }
+        else{
+            System.out.println("GAME OVER");
+        }
     }
 
     public void removeFlagged() {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         for (Body body : bodies) {
+
             if (((EntityModel)body.getUserData()).isFlaggedToBeRemoved()) {
                 model.remove((EntityModel)body.getUserData());
                 world.destroyBody(body);
@@ -224,26 +243,35 @@ public class GameController implements ContactListener{
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
-
+        //collision between ship & points
         if (bodyA.getUserData() instanceof PointsModel && bodyB.getUserData() instanceof ShipModel){
-            System.out.println("COIN HIT SHIP");
-            System.out.println("ADDED PTS: " + ((PointsModel) bodyA.getUserData()).getValue());
             ptsShipCollision(bodyA,bodyB);
         }
 
         if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof PointsModel) {
-            System.out.println("SHIP HIT COIN");
-            System.out.println("ADDED PTS: " + ((PointsModel) bodyB.getUserData()).getValue());
             ptsShipCollision(bodyB,bodyA);
         }
 
 
+        //collision between ship & shields
+        if (bodyA.getUserData() instanceof ShieldModel && bodyB.getUserData() instanceof ShipModel){
+            shieldShipCollision(bodyA,bodyB);
+        }
 
-        if (bodyA.getUserData() instanceof ShieldModel && bodyB.getUserData() instanceof ShipModel)
-            System.out.println("SHIELD HIT SHIP");
+        if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof ShieldModel){
+            shieldShipCollision(bodyB,bodyA);
+        }
 
-        if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof ShieldModel)
-            System.out.println("SHIP HIT SHIELD");
+
+        //collision between ship & asteroids
+        if (bodyA.getUserData() instanceof AsteroidModel && bodyB.getUserData() instanceof ShipModel){
+            asteroidsShipCollision(bodyA,bodyB);
+        }
+
+        if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof AsteroidModel){
+            asteroidsShipCollision(bodyB,bodyA);
+        }
+
     }
 
     @Override

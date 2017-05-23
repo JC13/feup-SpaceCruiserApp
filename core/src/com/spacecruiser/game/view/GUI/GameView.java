@@ -154,7 +154,6 @@ public class GameView extends ScreenAdapter {
 
     @Override
     public void show(){
-        //new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,camera)
         stage = new Stage(new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,camera));
         createBackBtn();
         table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.VIEWPORT_WIDTH - BTN_WIDTH)
@@ -177,7 +176,7 @@ public class GameView extends ScreenAdapter {
     private OrthographicCamera createCamera() {
         OrthographicCamera camera = new OrthographicCamera();
 
-        camera.position.set(model.getShip().getX(), model.getShip().getY(), 0);
+        camera.position.set(0, 0, 0);
         camera.update();
 
         if (DEBUG_PHYSICS) {
@@ -204,7 +203,7 @@ public class GameView extends ScreenAdapter {
         controller.removeFlagged();
 
         camera.position.set(model.getShip().getX() / PIXEL_TO_METER,
-                            (model.getShip().getY() + DISTANCE_TO_SPACESHIP + ARENA_HEIGHT*PIXEL_TO_METER) / PIXEL_TO_METER,
+                            (model.getShip().getY() + DISTANCE_TO_SPACESHIP + ARENA_HEIGHT * PIXEL_TO_METER) / PIXEL_TO_METER,
                             0);
 
         stage.getCamera().update();
@@ -259,6 +258,13 @@ public class GameView extends ScreenAdapter {
                 controller.rotateLeft(delta);
             else
                 controller.rotateRight(delta);
+        }
+
+        if (Gdx.input.getGyroscopeX() > 0) {
+            controller.rotateRight(delta * Gdx.input.getGyroscopeX());
+        }
+        if (Gdx.input.getGyroscopeX() < 0) {
+            controller.rotateLeft(delta * -Gdx.input.getGyroscopeX());
         }
     }
 

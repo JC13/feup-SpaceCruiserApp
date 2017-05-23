@@ -25,6 +25,8 @@ public class ShipView extends EntityView {
      */
     private Animation<TextureRegion> acceleratingAnimation;
 
+    private Animation<TextureRegion> shieldedAnimation;
+
     /**
      * The texture used when the ship is not accelerating
      */
@@ -40,6 +42,8 @@ public class ShipView extends EntityView {
      * Is the space ship accelerating.
      */
     private boolean accelerating;
+
+    private boolean shielded;
 
     /**
      * Constructs a space ship model.
@@ -62,6 +66,7 @@ public class ShipView extends EntityView {
     public Sprite createSprite(SpaceCruiser game) {
         acceleratingAnimation = createAcceleratingAnimation(game);
         notAcceleratingRegion = createNotAcceleratingRegion(game);
+        shieldedAnimation = createShieldedAnimation(game);
 
         return new Sprite(notAcceleratingRegion);
     }
@@ -95,6 +100,17 @@ public class ShipView extends EntityView {
         return new Animation<TextureRegion>(FRAME_TIME, frames);
     }
 
+
+    private Animation<TextureRegion> createShieldedAnimation(SpaceCruiser game){
+        Texture thrustTexture = game.getAssetManager().get("images/spaceship-thrust-shielded.png");
+        TextureRegion[][] thrustRegion = TextureRegion.split(thrustTexture, thrustTexture.getWidth() / 4, thrustTexture.getHeight());
+
+        TextureRegion[] frames = new TextureRegion[4];
+        System.arraycopy(thrustRegion[0], 0, frames, 0, 4);
+
+        return new Animation<TextureRegion>(FRAME_TIME, frames);
+    }
+
     /**
      * Updates this ship model. Also save and resets
      * the accelerating flag from the model.
@@ -106,6 +122,7 @@ public class ShipView extends EntityView {
         super.update(model);
 
         accelerating = ((ShipModel)model).isAccelerating();
+        shielded = ((ShipModel)model).isShielded();
         ((ShipModel)model).setAccelerating(false);
     }
 
@@ -122,8 +139,9 @@ public class ShipView extends EntityView {
 
         if (accelerating)
             sprite.setRegion(acceleratingAnimation.getKeyFrame(stateTime, true));
-        else
-            sprite.setRegion(notAcceleratingRegion);
+
+        if(shielded)
+            sprite.setRegion(shieldedAnimation.getKeyFrame(stateTime,true));
 
         sprite.draw(batch);
     }

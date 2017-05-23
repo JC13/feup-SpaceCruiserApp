@@ -32,7 +32,13 @@ public class GameModel {
     /**
      *  Points earned
      */
-    private float score;
+    private float score = 0;
+
+    private int shieldsPicked = 0;
+
+    private int ptsPicked = 0;
+
+    private int asteroidsDestroyed = 0;
 
     /**
      * The asteroids to avoid in this game.
@@ -65,7 +71,6 @@ public class GameModel {
         shields = new ArrayList<ShieldModel>();
         ship = new ShipModel(x, y, 0);
 
-        setScore(0);
 
         for (int i = 0; i < asteroidCount; i++)
             asteroids.add(new AsteroidModel(
@@ -112,6 +117,18 @@ public class GameModel {
      */
     public void setScore(float points){ this.score = points;}
 
+    public void increaseAsteroidsDestroyed(){
+        this.asteroidsDestroyed++;
+    }
+
+    public void increasePtsPicked(){
+        this.ptsPicked++;
+    }
+
+    public void increaseShieldsPicked(){
+        this.shieldsPicked++;
+    }
+
     public void remove(EntityModel model) {
 
         if (model instanceof AsteroidModel) {
@@ -120,6 +137,10 @@ public class GameModel {
 
         if (model instanceof PointsModel) {
             points.remove(model);
+        }
+
+        if (model instanceof ShieldModel){
+            shields.remove(model);
         }
     }
 

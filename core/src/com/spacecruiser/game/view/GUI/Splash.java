@@ -126,6 +126,7 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "images/BlackButton-Active.png" , Texture.class);
         this.game.getAssetManager().load( "images/BlackButton-Hover.png" , Texture.class);
 
+        this.game.getAssetManager().load( "images/spaceship-thrust-shielded.png" , Texture.class);
 
         this.game.getAssetManager().load( "images/main-menu.png" , Texture.class);
 
