@@ -22,7 +22,6 @@ public class GameHUD {
 
 
     private Stage stage;
-    private Viewport viewport;
     private Table table;
     private Label scoreLbl, scoreInfo;
     private int score;
@@ -33,8 +32,7 @@ public class GameHUD {
         scoreLbl = new Label("SCORE",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreInfo = new Label(String.format("%04d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        viewport = new FitViewport(HUD_VIEWPORT_WIDTH,HUD_VIEWPORT_HEIGHT,new OrthographicCamera());
-        stage = new Stage(viewport);
+        stage = new Stage(new FitViewport(HUD_VIEWPORT_WIDTH, HUD_VIEWPORT_HEIGHT, new OrthographicCamera()));
         table = new Table();
         table.top().setFillParent(true);
         //table.setDebug(true);

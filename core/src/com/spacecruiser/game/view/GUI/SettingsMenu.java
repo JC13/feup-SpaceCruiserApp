@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
 
@@ -68,7 +71,6 @@ public class SettingsMenu extends ScreenAdapter{
 
     public SettingsMenu(SpaceCruiser game){
         this.game = game;
-        createStage();
     }
 
     /**
@@ -78,11 +80,14 @@ public class SettingsMenu extends ScreenAdapter{
      */
     @Override
     public void render(float delta){
-        Gdx.gl.glClearColor(0,1,1,1);
+        Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
 
         Gdx.input.setInputProcessor(stage);
+        stage.getCamera().update();
+        game.getBatch().setProjectionMatrix(stage.getCamera().combined);
+
         game.getBatch().begin();
         drawBackground();
         game.getBatch().end();
@@ -93,9 +98,19 @@ public class SettingsMenu extends ScreenAdapter{
         game.getMusicPlayer().setVolume(musicVolume.getValue());
     }
 
+    @Override
+    public void show(){
+        createStage();
+    }
+
+    @Override
+    public void resize(int width, int height){
+        stage.getViewport().update(width,height);
+    }
+
 
     public void createStage(){
-        this.stage = new Stage();
+        this.stage = new Stage(new FillViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,new OrthographicCamera()));
         Table table = new Table();
         table.setFillParent(true);
 
@@ -136,7 +151,7 @@ public class SettingsMenu extends ScreenAdapter{
      */
     public void drawBackground() {
         Texture background = game.getAssetManager().get("images/settingsBackground.jpg", Texture.class);
-        game.getBatch().draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        game.getBatch().draw(background,0,0,SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH);
     }
 
 

@@ -48,12 +48,6 @@ public class MainMenu extends ScreenAdapter {
      */
     private ImageButton playBtn, settingsBtn, exitBtn;
 
-    /**
-     *  A camera to center on the menu.
-     */
-    private Camera camera;
-
-
 
     /**
      * Creates this screen.
@@ -62,8 +56,6 @@ public class MainMenu extends ScreenAdapter {
      */
     public MainMenu(SpaceCruiser game){
         this.game = game;
-        createStage();
-        createCamera();
     }
 
     /**
@@ -73,12 +65,12 @@ public class MainMenu extends ScreenAdapter {
      */
     @Override
     public void render(float delta){
-        Gdx.gl.glClearColor(1,1,1,1);
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-        Gdx.input.setInputProcessor(stage);
 
-        camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
+        Gdx.input.setInputProcessor(stage);
+        stage.getCamera().update();
+        game.getBatch().setProjectionMatrix(stage.getCamera().combined);
 
         game.getBatch().begin();
         drawBackground();
@@ -89,12 +81,21 @@ public class MainMenu extends ScreenAdapter {
     }
 
 
+    @Override
+    public void show(){
+        createStage();
+    }
+
+    @Override
+    public void resize(int width, int height){
+        stage.getViewport().update(width,height);
+    }
 
     /**
      *  Creates this menu stage.
      */
     public void createStage(){
-        this.stage = new Stage();
+        stage = new Stage(new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,new OrthographicCamera()));
         Table table = new Table();
         table.setFillParent(true);
 
@@ -112,19 +113,7 @@ public class MainMenu extends ScreenAdapter {
         stage.addActor(table);
     }
 
-    /**
-     *  Creates this menu camera.
-     */
-    private void createCamera() {
-        OrthographicCamera camera = new OrthographicCamera(GameView.VIEWPORT_WIDTH / GameView.PIXEL_TO_METER,
-                GameView.VIEWPORT_WIDTH / GameView.PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
 
-        camera.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
-
-        camera.update();
-
-        this.camera = camera;
-    }
 
     /**
      *  Creates the play button.
@@ -178,6 +167,6 @@ public class MainMenu extends ScreenAdapter {
      */
     private void drawBackground() {
         Texture background = game.getAssetManager().get("images/main-menu.png", Texture.class);
-        game.getBatch().draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        game.getBatch().draw(background,0,0,SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH);
     }
 }

@@ -16,11 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.controller.GameController;
 import com.spacecruiser.game.model.GameModel;
 import com.spacecruiser.game.model.entities.AsteroidModel;
-import com.spacecruiser.game.model.entities.BonusModel;
+import com.spacecruiser.game.model.entities.PointsModel;
+import com.spacecruiser.game.model.entities.ShieldModel;
 import com.spacecruiser.game.view.entities.BigAsteroidView;
 import com.spacecruiser.game.view.entities.MediumAsteroidView;
 import com.spacecruiser.game.view.entities.PointsView;
@@ -54,11 +56,6 @@ public class GameView extends ScreenAdapter {
      */
     public final static float PIXEL_TO_METER = 0.04f;
 
-    /**
-     * The width of the viewport in meters. The height is
-     * automatically calculated using the screen ratio.
-     */
-    public static final float VIEWPORT_WIDTH = 20;
 
     /**
      *  Adjust camera focus, shifting spaceship in the game view
@@ -129,7 +126,6 @@ public class GameView extends ScreenAdapter {
 
     private GameHUD hud;
 
-
     /**
      * Creates this screen.
      *
@@ -142,9 +138,10 @@ public class GameView extends ScreenAdapter {
         this.model = model;
         this.controller = controller;
         this.hud = new GameHUD();
-        this.stage = new Stage();
         this.table = new Table();
         table.setFillParent(true);
+
+        camera = createCamera();
 
 
         shipView = new ShipView(game);
@@ -153,12 +150,24 @@ public class GameView extends ScreenAdapter {
         bonusShieldView = new ShieldView(game);
         bonusPointsView = new PointsView(game);
 
-        createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(Gdx.graphics.getWidth() - BTN_WIDTH).padTop(Gdx.graphics.getHeight() - BTN_HEIGHT);
-        stage.addActor(table);
-
-        camera = createCamera();
     }
+
+    @Override
+    public void show(){
+        //new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,camera)
+        stage = new Stage(new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,camera));
+        createBackBtn();
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.VIEWPORT_WIDTH - BTN_WIDTH)
+                .padTop(SpaceCruiser.VIEWPORT_HEIGTH - BTN_HEIGHT);
+        stage.addActor(table);
+    }
+
+    @Override
+    public void resize(int width,int height){
+        stage.getViewport().update(width,height);
+    }
+
+
 
     /**
      * Creates the camera used to show the viewport.
@@ -166,10 +175,9 @@ public class GameView extends ScreenAdapter {
      * @return the camera
      */
     private OrthographicCamera createCamera() {
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,
-                VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
+        OrthographicCamera camera = new OrthographicCamera();
 
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.position.set(model.getShip().getX(), model.getShip().getY(), 0);
         camera.update();
 
         if (DEBUG_PHYSICS) {
@@ -192,14 +200,15 @@ public class GameView extends ScreenAdapter {
         handleInputs(delta);
 
         controller.update(delta);
-        controller.increaseScore(delta,model);
+        controller.increaseScore(delta);
+        controller.removeFlagged();
 
         camera.position.set(model.getShip().getX() / PIXEL_TO_METER,
                             (model.getShip().getY() + DISTANCE_TO_SPACESHIP + ARENA_HEIGHT*PIXEL_TO_METER) / PIXEL_TO_METER,
                             0);
 
-        camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
+        stage.getCamera().update();
+        game.getBatch().setProjectionMatrix(stage.getCamera().combined);
 
 
         Gdx.gl.glClearColor( 103/255f, 69/255f, 117/255f, 1 );
@@ -281,17 +290,16 @@ public class GameView extends ScreenAdapter {
             }
         }
 
-        List<BonusModel> bonus = model.getBonus();
-        for (BonusModel b : bonus){
-            if (b.getType() == BonusModel.BonusType.SHIELD) {
-                bonusShieldView.update(b);
-                bonusShieldView.draw(game.getBatch());
-            }
-
-            if (b.getType() == BonusModel.BonusType.POINTS){
+        List<PointsModel> points = model.getBonusPoints();
+        for (PointsModel b : points){
                 bonusPointsView.update(b);
                 bonusPointsView.draw(game.getBatch());
-            }
+        }
+
+        List<ShieldModel> shields = model.getBonusShields();
+        for (ShieldModel b : shields){
+            bonusShieldView.update(b);
+            bonusShieldView.draw(game.getBatch());
         }
 
         shipView.update(model.getShip());
@@ -306,5 +314,4 @@ public class GameView extends ScreenAdapter {
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         game.getBatch().draw(background, 0, 0, 0, 0, (int)(ARENA_WIDTH / PIXEL_TO_METER), (int) (ARENA_HEIGHT / PIXEL_TO_METER));
     }
-
 }

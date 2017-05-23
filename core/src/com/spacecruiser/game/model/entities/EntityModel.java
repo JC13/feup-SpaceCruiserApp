@@ -19,6 +19,8 @@ public abstract class EntityModel {
      */
     private float rotation;
 
+    private boolean toBeRemoved;
+
     /**
      * Constructs a model with a position and a rotation.
      *
@@ -30,6 +32,7 @@ public abstract class EntityModel {
         this.x = x;
         this.y = y;
         this.rotation = rotation;
+        this.toBeRemoved = false;
     }
 
     /**
@@ -78,4 +81,10 @@ public abstract class EntityModel {
     public void setRotation(float rotation) {
         this.rotation = rotation;
     }
+
+    public boolean isFlaggedToBeRemoved(){
+        return toBeRemoved;
+    }
+
+    public void setToBeRemoved(){this.toBeRemoved = true;}
 }

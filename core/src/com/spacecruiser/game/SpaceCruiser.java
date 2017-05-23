@@ -53,7 +53,6 @@ public class SpaceCruiser extends Game {
     }
 
 
-
     /**
      * Disposes of all assets.
      */
@@ -107,5 +106,6 @@ public class SpaceCruiser extends Game {
      *
      * @return the music player
      */
-	public Music getMusicPlayer(){return this.soundtrack; }
+	public Music getMusicPlayer(){return this.soundtrack;}
+
 }

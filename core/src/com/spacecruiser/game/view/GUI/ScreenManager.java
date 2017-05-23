@@ -14,7 +14,7 @@ public class ScreenManager {
     /**
      *  Simulates the different states, each one corresponding to a screen.
      */
-    public enum ActiveScreen {SPLASH,MENU,SETTINGS,GAME};
+    public enum ActiveScreen {SPLASH,MENU,SETTINGS,GAME}
 
     /**
      *  The game where the screen is meant to be set.

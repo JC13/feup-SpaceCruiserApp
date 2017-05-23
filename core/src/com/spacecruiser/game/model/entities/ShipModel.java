@@ -9,6 +9,8 @@ public class ShipModel extends EntityModel {
      */
     private boolean accelerating = true;
 
+    private boolean shielded = false;
+
     /**
      * Creates a new ship model in a certain position and having a certain rotation.
      *

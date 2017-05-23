@@ -1,7 +1,7 @@
 package com.spacecruiser.game.controller.entities;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.spacecruiser.game.model.entities.BonusModel;
+import com.spacecruiser.game.model.entities.PointsModel;
 
 /**
  * A concrete representation of an EntityBody representing an extra points bonus.
@@ -15,7 +15,7 @@ public class PointsBody extends EntityBody {
      * @param world the physical world this bonus belongs to.
      * @param model the model representing this bonus.
      */
-    public PointsBody(World world, BonusModel model) {
+    public PointsBody(World world, PointsModel model) {
         super(world, model);
 
         float density = 1f, friction = 0.4f, restitution = 0.5f;

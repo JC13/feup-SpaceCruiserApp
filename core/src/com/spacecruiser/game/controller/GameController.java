@@ -3,6 +3,10 @@ package com.spacecruiser.game.controller;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.spacecruiser.game.controller.entities.BigAsteroidBody;
@@ -12,10 +16,11 @@ import com.spacecruiser.game.controller.entities.ShieldBody;
 import com.spacecruiser.game.controller.entities.ShipBody;
 import com.spacecruiser.game.model.GameModel;
 import com.spacecruiser.game.model.entities.AsteroidModel;
-import com.spacecruiser.game.model.entities.BonusModel;
 import com.spacecruiser.game.model.entities.EntityModel;
+import com.spacecruiser.game.model.entities.PointsModel;
+import com.spacecruiser.game.model.entities.ShieldModel;
 import com.spacecruiser.game.model.entities.ShipModel;
-
+import com.spacecruiser.game.view.entities.PointsView;
 
 import java.util.List;
 
@@ -26,7 +31,7 @@ import static java.lang.Math.sin;
  * Controls the physics aspect of the game.
  */
 
-public class GameController {
+public class GameController implements ContactListener{
     /**
      * The arena width in meters.
      */
@@ -47,11 +52,7 @@ public class GameController {
      */
     private static final float ACCELERATION_FORCE = 30f;
 
-    /**
-     *  Minimum score per render.
-     */
-    private static final int MIN_SCORE_INC = 2;
-
+    private GameModel model;
     /**
      * The physics world controlled by this controller.
      */
@@ -67,14 +68,17 @@ public class GameController {
      */
     private float accumulator;
 
+
+    private int accumulatedPts = 0;
+
     /**
      * Creates a new GameController that controls the physics of a certain GameModel.
      *
      * @param model The model controlled by this controller.
      */
     public GameController(GameModel model) {
+        this.model = model;
         world = new World(new Vector2(0, 0), true);
-
         shipBody = new ShipBody(world, model.getShip());
 
         List<AsteroidModel> asteroids = model.getAsteroids();
@@ -85,14 +89,17 @@ public class GameController {
             new MediumAsteroidBody(world, asteroid);
 
 
-        List<BonusModel> bonus = model.getBonus();
-        for (BonusModel b : bonus) {
-            if (b.getType() == BonusModel.BonusType.SHIELD)
-                new ShieldBody(world, b);
-
-            if (b.getType() == BonusModel.BonusType.POINTS)
-                new PointsBody(world, b);
+        List<PointsModel> points = model.getBonusPoints();
+        for (PointsModel b : points) {
+            new PointsBody(world, b);
         }
+
+        List<ShieldModel> shields = model.getBonusShields();
+        for (ShieldModel b : shields) {
+            new ShieldBody(world, b);
+        }
+
+        world.setContactListener(this);
 
     }
 
@@ -190,8 +197,67 @@ public class GameController {
     /**
      * Increase current score based on acceleration
      */
-    public void increaseScore(float delta, GameModel model){
-        model.setScore(model.getScore() + (delta * ACCELERATION_FORCE)/10);
+    public void increaseScore(float delta){
+        model.setScore(model.getScore() + (delta * ACCELERATION_FORCE)/10 + accumulatedPts);
+        accumulatedPts = 0;
     }
 
+    public void ptsShipCollision(Body pts, Body ship){
+        PointsModel ptsModel = ((PointsModel) pts.getUserData());
+        accumulatedPts += ptsModel.getValue();
+        ptsModel.setToBeRemoved();
+    }
+
+    public void removeFlagged() {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for (Body body : bodies) {
+            if (((EntityModel)body.getUserData()).isFlaggedToBeRemoved()) {
+                model.remove((EntityModel)body.getUserData());
+                world.destroyBody(body);
+            }
+        }
+    }
+
+    @Override
+    public void beginContact(Contact contact) {
+        Body bodyA = contact.getFixtureA().getBody();
+        Body bodyB = contact.getFixtureB().getBody();
+
+
+        if (bodyA.getUserData() instanceof PointsModel && bodyB.getUserData() instanceof ShipModel){
+            System.out.println("COIN HIT SHIP");
+            System.out.println("ADDED PTS: " + ((PointsModel) bodyA.getUserData()).getValue());
+            ptsShipCollision(bodyA,bodyB);
+        }
+
+        if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof PointsModel) {
+            System.out.println("SHIP HIT COIN");
+            System.out.println("ADDED PTS: " + ((PointsModel) bodyB.getUserData()).getValue());
+            ptsShipCollision(bodyB,bodyA);
+        }
+
+
+
+        if (bodyA.getUserData() instanceof ShieldModel && bodyB.getUserData() instanceof ShipModel)
+            System.out.println("SHIELD HIT SHIP");
+
+        if (bodyA.getUserData() instanceof ShipModel && bodyB.getUserData() instanceof ShieldModel)
+            System.out.println("SHIP HIT SHIELD");
+    }
+
+    @Override
+    public void endContact(Contact contact) {
+
+    }
+
+    @Override
+    public void preSolve(Contact contact, Manifold oldManifold) {
+
+    }
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+
+    }
 }

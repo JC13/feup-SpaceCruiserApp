@@ -3,7 +3,9 @@ package com.spacecruiser.game.model;
 
 import com.spacecruiser.game.controller.GameController;
 import com.spacecruiser.game.model.entities.AsteroidModel;
-import com.spacecruiser.game.model.entities.BonusModel;
+import com.spacecruiser.game.model.entities.EntityModel;
+import com.spacecruiser.game.model.entities.PointsModel;
+import com.spacecruiser.game.model.entities.ShieldModel;
 import com.spacecruiser.game.model.entities.ShipModel;
 
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ import static com.badlogic.gdx.math.MathUtils.random;
  */
 
 public class GameModel {
+
+    private final static int MIN_PTS_BONUS = 500;
+    private final static int MAX_PTS_BONUS = 1000;
+
+
     /**
      * The space ship controlled by the user in this game.
      */
@@ -35,7 +42,12 @@ public class GameModel {
     /**
      * The bonus to be collect in this game.
      */
-    private List<BonusModel> bonus;
+    private List<PointsModel> points;
+
+    /**
+     * The bonus to be collect in this game.
+     */
+    private List<ShieldModel> shields;
 
 
 
@@ -49,7 +61,8 @@ public class GameModel {
      */
     public GameModel(float x, float y, int asteroidCount, int bonusCount) {
         asteroids = new ArrayList<AsteroidModel>();
-        bonus = new ArrayList<BonusModel>();
+        points = new ArrayList<PointsModel>();
+        shields = new ArrayList<ShieldModel>();
         ship = new ShipModel(x, y, 0);
 
         setScore(0);
@@ -63,11 +76,17 @@ public class GameModel {
 
 
         for(int j = 0; j < bonusCount; j++)
-            bonus.add(new BonusModel(
+            points.add(new PointsModel(
                     random.nextFloat() * GameController.ARENA_WIDTH,
                     random.nextFloat() * GameController.ARENA_HEIGHT,
                     (float) Math.toRadians(random.nextFloat() * 360),
-                    random.nextBoolean() ? BonusModel.BonusType.SHIELD : BonusModel.BonusType.POINTS));
+                    random.nextInt(MAX_PTS_BONUS) + MIN_PTS_BONUS));
+
+        for(int j = 0; j < bonusCount; j++)
+            shields.add(new ShieldModel(
+                    random.nextFloat() * GameController.ARENA_WIDTH,
+                    random.nextFloat() * GameController.ARENA_HEIGHT,
+                    (float) Math.toRadians(random.nextFloat() * 360)));
 
     }
 
@@ -93,6 +112,17 @@ public class GameModel {
      */
     public void setScore(float points){ this.score = points;}
 
+    public void remove(EntityModel model) {
+
+        if (model instanceof AsteroidModel) {
+            asteroids.remove(model);
+        }
+
+        if (model instanceof PointsModel) {
+            points.remove(model);
+        }
+    }
+
     /**
      * Returns the asteroids.
      *
@@ -107,5 +137,7 @@ public class GameModel {
      *
      * @return the bonus list
      */
-    public List<BonusModel> getBonus() { return bonus; }
+    public List<PointsModel> getBonusPoints() { return points; }
+
+    public List<ShieldModel> getBonusShields() { return shields; }
 }
