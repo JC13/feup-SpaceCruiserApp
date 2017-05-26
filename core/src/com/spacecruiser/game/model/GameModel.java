@@ -65,7 +65,7 @@ public class GameModel {
      * @param y the y-coordinate of the space ship in meters
      * @param asteroidCount The number of asteroids to create
      */
-    public GameModel(float x, float y, int asteroidCount, int bonusCount) {
+    public GameModel(float x, float y, int asteroidCount, int ptsCount, int shieldsCount) {
         asteroids = new ArrayList<AsteroidModel>();
         points = new ArrayList<PointsModel>();
         shields = new ArrayList<ShieldModel>();
@@ -80,14 +80,14 @@ public class GameModel {
                     random.nextBoolean() ? AsteroidModel.AsteroidSize.BIG : AsteroidModel.AsteroidSize.MEDIUM));
 
 
-        for(int j = 0; j < bonusCount; j++)
+        for(int j = 0; j < ptsCount; j++)
             points.add(new PointsModel(
                     random.nextFloat() * GameController.ARENA_WIDTH,
                     random.nextFloat() * GameController.ARENA_HEIGHT,
                     (float) Math.toRadians(random.nextFloat() * 360),
                     random.nextInt(MAX_PTS_BONUS) + MIN_PTS_BONUS));
 
-        for(int j = 0; j < bonusCount; j++)
+        for(int j = 0; j < shieldsCount; j++)
             shields.add(new ShieldModel(
                     random.nextFloat() * GameController.ARENA_WIDTH,
                     random.nextFloat() * GameController.ARENA_HEIGHT,

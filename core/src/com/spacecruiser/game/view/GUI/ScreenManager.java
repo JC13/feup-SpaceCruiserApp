@@ -78,7 +78,8 @@ public class ScreenManager {
 
             case GAME:
                 if(gameView == null){
-                    GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2, 100, 100);
+                    GameModel model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2,
+                            SpaceCruiser.ASTEROIDS_COUNT, SpaceCruiser.POINTS_COUNT, SpaceCruiser.SHIELDS_COUNT);
                     this.gameView = new GameView(game, model, new GameController(model));
                 }
                 game.setScreen(this.gameView);

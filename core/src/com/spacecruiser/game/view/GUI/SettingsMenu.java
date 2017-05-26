@@ -2,7 +2,6 @@ package com.spacecruiser.game.view.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
 
@@ -110,7 +108,7 @@ public class SettingsMenu extends ScreenAdapter{
 
 
     public void createStage(){
-        this.stage = new Stage(new FillViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,new OrthographicCamera()));
+        this.stage = new Stage(new FillViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH,new OrthographicCamera()));
         Table table = new Table();
         table.setFillParent(true);
 
@@ -151,7 +149,7 @@ public class SettingsMenu extends ScreenAdapter{
      */
     public void drawBackground() {
         Texture background = game.getAssetManager().get("images/settingsBackground.jpg", Texture.class);
-        game.getBatch().draw(background,0,0,SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH);
+        game.getBatch().draw(background,0,0,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH);
     }
 
 

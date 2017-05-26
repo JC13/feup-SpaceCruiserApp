@@ -60,7 +60,7 @@ public class GameView extends ScreenAdapter {
     /**
      *  Adjust camera focus, shifting spaceship in the game view
      */
-    private static final float DISTANCE_TO_SPACESHIP = 3;
+    private static final float DISTANCE_TO_SPACESHIP = 10;
 
     /**
      * The game this screen belongs to.
@@ -154,11 +154,7 @@ public class GameView extends ScreenAdapter {
 
     @Override
     public void show(){
-        stage = new Stage(new FitViewport(SpaceCruiser.VIEWPORT_WIDTH,SpaceCruiser.VIEWPORT_HEIGTH,camera));
-        createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.VIEWPORT_WIDTH - BTN_WIDTH)
-                .padTop(SpaceCruiser.VIEWPORT_HEIGTH - BTN_HEIGHT);
-        stage.addActor(table);
+        createStage();
     }
 
     @Override
@@ -167,6 +163,14 @@ public class GameView extends ScreenAdapter {
     }
 
 
+    private void createStage(){
+        stage = new Stage(new FitViewport(SpaceCruiser.GAME_VIEWPORT_WIDTH,SpaceCruiser.GAME_VIEWPORT_HEIGHT,camera));
+
+        createBackBtn();
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.MENU_VIEWPORT_WIDTH - BTN_WIDTH)
+                .padTop(SpaceCruiser.MENU_VIEWPORT_HEIGTH - BTN_HEIGHT);
+        stage.addActor(table);
+    }
 
     /**
      * Creates the camera used to show the viewport.
@@ -268,7 +272,7 @@ public class GameView extends ScreenAdapter {
         }
     }
 
-    public void createBackBtn(){
+    private void createBackBtn(){
         backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
 
