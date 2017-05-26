@@ -125,6 +125,7 @@ public class MainMenu extends ScreenAdapter {
             @Override
             public void clicked(InputEvent e, float x, float y){
                 game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
+                //game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAMEOVER);
             }
         });
     }

@@ -14,7 +14,7 @@ public class ScreenManager {
     /**
      *  Simulates the different states, each one corresponding to a screen.
      */
-    public enum ActiveScreen {SPLASH,MENU,SETTINGS,GAME}
+    public enum ActiveScreen {SPLASH,MENU,SETTINGS,GAME,GAMEOVER}
 
     /**
      *  The game where the screen is meant to be set.
@@ -35,6 +35,8 @@ public class ScreenManager {
      *  The settings menu. Saving it to avoid creating new settings menu objects.
      */
     private SettingsMenu settingsmenu;
+
+    private GameModel model;
 
 
     /**
@@ -85,6 +87,9 @@ public class ScreenManager {
                 game.setScreen(this.gameView);
                 break;
 
+            case GAMEOVER:
+                game.setScreen(new GameOver(game,model));
+                break;
         }
     }
 }

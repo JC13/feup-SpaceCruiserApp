@@ -40,6 +40,8 @@ public class GameModel {
 
     private int asteroidsDestroyed = 0;
 
+    private String playerNickname;
+
     /**
      * The asteroids to avoid in this game.
      */
@@ -161,4 +163,20 @@ public class GameModel {
     public List<PointsModel> getBonusPoints() { return points; }
 
     public List<ShieldModel> getBonusShields() { return shields; }
+
+    public int getShieldsPicked() {
+        return shieldsPicked;
+    }
+
+    public int getPtsPicked() {
+        return ptsPicked;
+    }
+
+    public int getAsteroidsDestroyed() {
+        return asteroidsDestroyed;
+    }
+
+    public String getPlayerNickname(){
+        return this.playerNickname;
+    }
 }
