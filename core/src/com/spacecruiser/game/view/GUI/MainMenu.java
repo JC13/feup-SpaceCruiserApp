@@ -124,8 +124,8 @@ public class MainMenu extends ScreenAdapter {
         playBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
-                //game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAMEOVER);
+                //game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.HELP);
             }
         });
     }

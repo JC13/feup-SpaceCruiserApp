@@ -9,9 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
-
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
@@ -134,6 +132,7 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "skins/uiskin.atlas" , TextureAtlas.class);
 
         this.game.getAssetManager().load( "images/gameoverBackground.jpg" , Texture.class);
+        this.game.getAssetManager().load( "images/helpmenu.jpg" , Texture.class);
 
 
         this.game.getAssetManager().finishLoading();

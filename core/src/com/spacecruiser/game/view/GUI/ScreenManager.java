@@ -14,17 +14,20 @@ public class ScreenManager {
     /**
      *  Simulates the different states, each one corresponding to a screen.
      */
-    public enum ActiveScreen {SPLASH,MENU,SETTINGS,GAME,GAMEOVER}
+    public enum ActiveScreen {SPLASH, MENU, SETTINGS, HELP, GAME, GAMEOVER}
 
     /**
      *  The game where the screen is meant to be set.
      */
     private SpaceCruiser game;
 
+    private GameModel model;
+
     /**
      *  A game view. There can only be one.
      */
     private GameView gameView;
+
 
     /**
      *  The main menu. Saving it to avoid creating new menu objects.
@@ -36,7 +39,8 @@ public class ScreenManager {
      */
     private SettingsMenu settingsmenu;
 
-    private GameModel model;
+    private HelpView helpmenu;
+
 
 
     /**
@@ -50,6 +54,7 @@ public class ScreenManager {
         this.gameView = null;
         this.mainmenu = null;
         this.settingsmenu = null;
+        this.helpmenu = null;
     }
 
 
@@ -89,6 +94,13 @@ public class ScreenManager {
 
             case GAMEOVER:
                 game.setScreen(new GameOver(game,model));
+                break;
+
+            case HELP:
+                if(helpmenu == null){
+                    helpmenu = new HelpView(game);
+                }
+                game.setScreen(this.helpmenu);
                 break;
         }
     }
