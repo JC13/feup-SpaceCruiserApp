@@ -37,6 +37,8 @@ public class GameTest {
     private World world;
     private Body ship, asteroid, shield, point;
 
+    private float delta = 0.2f;
+
     public GameTest(){
         model = new GameModel(GameController.ARENA_WIDTH / 2, GameController.ARENA_HEIGHT / 2,
                 1,1, 1);
@@ -88,11 +90,27 @@ public class GameTest {
         assertEquals(0,model.getBonusShields().size(),0);
         assertEquals(0,model.getBonusPoints().size(),0);
         assertEquals(1, world.getBodyCount(),0);
-
-
+        assertEquals(1,model.getAsteroidsDestroyed(),0);
 
     }
 
+    @Test
+    public void testShipAcceleration(){
+        float score = 0;
+        controller.accelerate(delta);
+        assertTrue(model.getShip().isAccelerating());
+        assertEquals(score,model.getScore(),0);
+        controller.increaseScore(delta);
+        assertEquals(model.getScore(), score+(delta * 30f)/10,0);
+
+    }
+
+    @Test
+    public void testRotation(){
+        assertEquals(0,((ShipModel)ship.getUserData()).getRotation(),0);
+        controller.rotateRight(delta);
+        assertEquals(ship.getAngle() - 10f * delta,model.getShip().getRotation(),0);
+    }
 
 
 
