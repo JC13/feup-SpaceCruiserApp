@@ -57,7 +57,10 @@ public class GameModel {
      */
     private List<ShieldModel> shields;
 
-
+    /**
+     *  Boolean indicating if game over.
+     */
+    private boolean gameOver = false;
 
     /**
      * Constructs a game with a.space ship in a certain position and
@@ -176,7 +179,13 @@ public class GameModel {
         return asteroidsDestroyed;
     }
 
-    public String getPlayerNickname(){
-        return this.playerNickname;
-    }
+    /**
+     *  Sets game over flag.
+     */
+    public void setGameOver(){this.gameOver = true;}
+
+    /**
+     *  Checks if game is over.
+     */
+    public boolean getGameOver(){return this.gameOver;}
 }

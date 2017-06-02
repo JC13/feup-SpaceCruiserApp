@@ -1,21 +1,15 @@
 package com.spacecruiser.game.view.GUI;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.model.GameModel;
-
-import java.awt.TextArea;
 
 /**
  * Game over screen to save user nick, score and date.
@@ -27,8 +21,7 @@ public class GameOver extends ScreenAdapter {
     private GameModel model;
 
     private Stage stage;
-    private Label playerNicknameLbL;
-    private TextArea playerNicknameTxt;
+
 
     public GameOver(SpaceCruiser game, GameModel model){
         this.game = game;
@@ -49,26 +42,22 @@ public class GameOver extends ScreenAdapter {
     }
 
     @Override
+    public void resize(int width, int height){
+        stage.getViewport().update(width,height);
+    }
+
+    @Override
     public void show(){
-        this.stage = new Stage(new FitViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH, SpaceCruiser.MENU_VIEWPORT_HEIGTH,
-                                new OrthographicCamera()));
+        this.stage = new Stage(new FitViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH, SpaceCruiser.MENU_VIEWPORT_HEIGTH, new OrthographicCamera()));
 
         Table table = new Table();
-        table.top().setFillParent(true);
-
-        table.setDebug(true);
-        playerNicknameLbL = new Label("PLAYER: ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerNicknameLbL.setSize(800,800);
-        table.add(playerNicknameLbL);
-        table.row();
-
+        table.setFillParent(true);
         stage.addActor(table);
-
     }
 
 
     private void drawbackground(){
-        game.getBatch().draw((Texture)game.getAssetManager().get("images/gameoverBackground.jpg"),0,0,
-                                SpaceCruiser.MENU_VIEWPORT_WIDTH, SpaceCruiser.MENU_VIEWPORT_HEIGTH);
+        Texture background = game.getAssetManager().get("images/gameoverBackground.jpg");
+        game.getBatch().draw(background,0,0,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH);
     }
 }

@@ -138,18 +138,14 @@ public class GameView extends ScreenAdapter {
         this.model = model;
         this.controller = controller;
         this.hud = new GameHUD();
-        this.table = new Table();
-        table.setFillParent(true);
 
         camera = createCamera();
-
 
         shipView = new ShipView(game);
         bigAsteroidView = new BigAsteroidView(game);
         mediumAsteroidView = new MediumAsteroidView(game);
         bonusShieldView = new ShieldView(game);
         bonusPointsView = new PointsView(game);
-
     }
 
     @Override
@@ -165,10 +161,13 @@ public class GameView extends ScreenAdapter {
 
     private void createStage(){
         stage = new Stage(new FitViewport(SpaceCruiser.GAME_VIEWPORT_WIDTH,SpaceCruiser.GAME_VIEWPORT_HEIGHT,camera));
+        this.table = new Table();
+        table.setFillParent(true);
 
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.MENU_VIEWPORT_WIDTH - BTN_WIDTH)
-                .padTop(SpaceCruiser.MENU_VIEWPORT_HEIGTH - BTN_HEIGHT);
+        table.add(backBtn);
+        table.row();
+
         stage.addActor(table);
     }
 
@@ -234,6 +233,8 @@ public class GameView extends ScreenAdapter {
 
         hud.update(model.getScore());
 
+        if(model.getGameOver())
+            game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAMEOVER);
     }
 
 

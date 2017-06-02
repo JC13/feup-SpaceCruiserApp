@@ -45,7 +45,7 @@ public class MainMenu extends ScreenAdapter {
     /**
      *  The main menu buttons.
      */
-    private ImageButton playBtn, settingsBtn, exitBtn;
+    private ImageButton playBtn, settingsBtn, helpBtn, exitBtn;
 
 
     /**
@@ -95,6 +95,7 @@ public class MainMenu extends ScreenAdapter {
      */
     public void createStage(){
         stage = new Stage(new FitViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH,new OrthographicCamera()));
+
         Table table = new Table();
         table.setFillParent(true);
 
@@ -104,6 +105,10 @@ public class MainMenu extends ScreenAdapter {
 
         createSettingsBtn();
         table.add(settingsBtn).size(BTN_WIDTH,BTN_HEIGHT);
+        table.row();
+
+        createHelpBtn();
+        table.add(helpBtn).size(BTN_WIDTH,BTN_HEIGHT);
         table.row();
 
         createExitBtn();
@@ -117,16 +122,31 @@ public class MainMenu extends ScreenAdapter {
     /**
      *  Creates the play button.
      */
-    public void createPlayBtn(){
+    private void createPlayBtn(){
         playBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Hover.png"))));
 
         playBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){
-                //game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
-                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.HELP);
+                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAME);
+                //game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.HELP);
             }
+        });
+    }
+
+    /**
+     *  Creates the help button.
+     */
+    private void createHelpBtn(){
+        helpBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlueButton-Active.png"))),
+                new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlueButton-Hover.png"))));
+
+        helpBtn.addListener(new ClickListener(){
+           @Override
+            public void clicked(InputEvent e, float x, float y){
+               game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.HELP);
+           }
         });
     }
 

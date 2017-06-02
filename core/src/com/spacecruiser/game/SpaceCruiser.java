@@ -19,9 +19,9 @@ public class SpaceCruiser extends Game {
     public final static float GAME_VIEWPORT_WIDTH = 900;
     public final static float GAME_VIEWPORT_HEIGHT = 800;
 
-    public final static int ASTEROIDS_COUNT = 50;
-    public final static int POINTS_COUNT = 50;
-    public final static int SHIELDS_COUNT = 50;
+    public final static int ASTEROIDS_COUNT = 25;
+    public final static int POINTS_COUNT = 25;
+    public final static int SHIELDS_COUNT = 25;
 
 
     /**
@@ -43,6 +43,7 @@ public class SpaceCruiser extends Game {
      *  The screen manager, controling what needs to be rendered by the game.
      */
     private ScreenManager screenManager;
+
 
     /**
      * Creates the game. Initializes the sprite batch and asset manager.
@@ -115,5 +116,6 @@ public class SpaceCruiser extends Game {
      * @return the music player
      */
 	public Music getMusicPlayer(){return this.soundtrack;}
+
 
 }

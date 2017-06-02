@@ -124,6 +124,9 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "images/BlackButton-Active.png" , Texture.class);
         this.game.getAssetManager().load( "images/BlackButton-Hover.png" , Texture.class);
 
+        this.game.getAssetManager().load( "images/BlueButton-Active.png" , Texture.class);
+        this.game.getAssetManager().load( "images/BlueButton-Hover.png" , Texture.class);
+
         this.game.getAssetManager().load( "images/spaceship-thrust-shielded.png" , Texture.class);
 
         this.game.getAssetManager().load( "images/main-menu.png" , Texture.class);
@@ -132,7 +135,7 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "skins/uiskin.atlas" , TextureAtlas.class);
 
         this.game.getAssetManager().load( "images/gameoverBackground.jpg" , Texture.class);
-        this.game.getAssetManager().load( "images/helpmenu.jpg" , Texture.class);
+        this.game.getAssetManager().load( "images/helpmenu.png" , Texture.class);
 
 
         this.game.getAssetManager().finishLoading();

@@ -2,7 +2,6 @@ package com.spacecruiser.game.view.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
 /**
@@ -36,6 +35,7 @@ public class HelpView extends ScreenAdapter {
     }
 
 
+
     @Override
     public void show(){
         createStage();
@@ -55,19 +55,16 @@ public class HelpView extends ScreenAdapter {
         stage.draw();
     }
 
-    @Override
-    public void resize(int width,int height){
-        stage.getViewport().update(width,height);
-    }
 
     private void createStage(){
-        stage = new Stage(new FitViewport(SpaceCruiser.GAME_VIEWPORT_WIDTH,SpaceCruiser.GAME_VIEWPORT_HEIGHT,new OrthographicCamera()));
+        stage = new Stage(new FillViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH,new OrthographicCamera()));
 
         Table table = new Table();
+        table.setFillParent(true);
 
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padLeft(SpaceCruiser.MENU_VIEWPORT_WIDTH - BTN_WIDTH)
-                .padTop(SpaceCruiser.MENU_VIEWPORT_HEIGTH - BTN_HEIGHT);
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padTop(Gdx.graphics.getHeight()+ 3*BTN_HEIGHT).padLeft(Gdx.graphics.getWidth()+ 4* BTN_WIDTH);
+
         stage.addActor(table);
     }
 
@@ -84,7 +81,7 @@ public class HelpView extends ScreenAdapter {
     }
 
     private void drawInstructions(){
-        Texture help = game.getAssetManager().get("images/helpmenu.jpg");
+        Texture help = game.getAssetManager().get("images/helpmenu.png");
         game.getBatch().draw(help,0,0,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH);
     }
 }

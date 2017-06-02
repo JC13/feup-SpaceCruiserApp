@@ -45,7 +45,7 @@ public class GameController implements ContactListener{
     /**
      * The rotation speed in radians per second.
      */
-    private static final float ROTATION_SPEED = 10f;
+    private static final float ROTATION_SPEED = 20f;
 
     /**
      * The acceleration impulse in newtons.
@@ -222,7 +222,7 @@ public class GameController implements ContactListener{
             model.increaseAsteroidsDestroyed();
         }
         else{
-            System.out.println("GAME OVER");
+            model.setGameOver();
         }
     }
 
