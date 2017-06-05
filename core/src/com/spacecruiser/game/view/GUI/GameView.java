@@ -137,7 +137,7 @@ public class GameView extends ScreenAdapter {
         this.game = game;
         this.model = model;
         this.controller = controller;
-        this.hud = new GameHUD();
+        this.hud = new GameHUD(game);
 
         camera = createCamera();
 
@@ -161,14 +161,6 @@ public class GameView extends ScreenAdapter {
 
     private void createStage(){
         stage = new Stage(new FitViewport(SpaceCruiser.GAME_VIEWPORT_WIDTH,SpaceCruiser.GAME_VIEWPORT_HEIGHT,camera));
-        this.table = new Table();
-        table.setFillParent(true);
-
-        createBackBtn();
-        table.add(backBtn);
-        table.row();
-
-        stage.addActor(table);
     }
 
     /**
@@ -212,8 +204,9 @@ public class GameView extends ScreenAdapter {
         stage.getCamera().update();
         game.getBatch().setProjectionMatrix(stage.getCamera().combined);
 
+        //Gdx.gl.glClearColor( 103/255f, 69/255f, 117/255f, 1 ); //purple background
+        Gdx.gl.glClearColor( 0, 0, 0, 1 );
 
-        Gdx.gl.glClearColor( 103/255f, 69/255f, 117/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         game.getBatch().begin();
@@ -227,14 +220,17 @@ public class GameView extends ScreenAdapter {
             debugRenderer.render(controller.getWorld(), debugCamera);
         }
 
-        Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(stage);
         stage.act();
         stage.draw();
 
+        Gdx.input.setInputProcessor(hud.getStage());
         hud.update(model.getScore());
 
-        if(model.getGameOver())
+        if(model.getGameOver()) {
             game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.GAMEOVER);
+            game.getScreenManager().newGame();
+        }
     }
 
 
@@ -265,11 +261,11 @@ public class GameView extends ScreenAdapter {
                 controller.rotateRight(delta);
         }
 
-        if (Gdx.input.getGyroscopeX() > 0) {
-            controller.rotateRight(delta * Gdx.input.getGyroscopeX());
+        if (Gdx.input.getGyroscopeY() > 0) {
+            controller.rotateRight(delta * Gdx.input.getGyroscopeY());
         }
-        if (Gdx.input.getGyroscopeX() < 0) {
-            controller.rotateLeft(delta * -Gdx.input.getGyroscopeX());
+        if (Gdx.input.getGyroscopeY() < 0) {
+            controller.rotateLeft(delta * -Gdx.input.getGyroscopeY());
         }
     }
 
@@ -324,5 +320,9 @@ public class GameView extends ScreenAdapter {
         Texture background = game.getAssetManager().get("images/background.png", Texture.class);
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         game.getBatch().draw(background, 0, 0, 0, 0, (int)(ARENA_WIDTH / PIXEL_TO_METER), (int) (ARENA_HEIGHT / PIXEL_TO_METER));
+    }
+
+    public GameModel getModel(){
+        return this.model;
     }
 }

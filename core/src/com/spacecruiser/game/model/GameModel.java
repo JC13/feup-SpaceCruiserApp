@@ -40,7 +40,6 @@ public class GameModel {
 
     private int asteroidsDestroyed = 0;
 
-    private String playerNickname;
 
     /**
      * The asteroids to avoid in this game.

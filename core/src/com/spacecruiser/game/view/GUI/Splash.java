@@ -134,7 +134,7 @@ public class Splash extends ScreenAdapter{
         this.game.getAssetManager().load( "skins/uiskin.png" , Texture.class);
         this.game.getAssetManager().load( "skins/uiskin.atlas" , TextureAtlas.class);
 
-        this.game.getAssetManager().load( "images/gameoverBackground.jpg" , Texture.class);
+        this.game.getAssetManager().load( "images/gameOverScreen.png" , Texture.class);
         this.game.getAssetManager().load( "images/helpmenu.png" , Texture.class);
 
 

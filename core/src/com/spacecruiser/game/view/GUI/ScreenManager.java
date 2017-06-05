@@ -21,7 +21,6 @@ public class ScreenManager {
      */
     private SpaceCruiser game;
 
-    private GameModel model;
 
     /**
      *  A game view. There can only be one.
@@ -50,6 +49,7 @@ public class ScreenManager {
      */
     public ScreenManager(SpaceCruiser game){
         this.game = game;
+
 
         this.gameView = null;
         this.mainmenu = null;
@@ -93,7 +93,7 @@ public class ScreenManager {
                 break;
 
             case GAMEOVER:
-                game.setScreen(new GameOver(game,model));
+                game.setScreen(new GameOver(game,gameView.getModel()));
                 break;
 
             case HELP:
@@ -103,5 +103,9 @@ public class ScreenManager {
                 game.setScreen(this.helpmenu);
                 break;
         }
+    }
+
+    public void newGame(){
+        this.gameView = null;
     }
 }
