@@ -94,6 +94,7 @@ public class ScreenManager {
                             SpaceCruiser.ASTEROIDS_COUNT, SpaceCruiser.POINTS_COUNT, SpaceCruiser.SHIELDS_COUNT);
                     this.gameView = new GameView(game, model, new GameController(model));
                 }
+
                 game.setScreen(this.gameView);
                 break;
 

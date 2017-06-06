@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.spacecruiser.game.view.GUI.ScreenManager;
 
+
 /**
  * The game main class.
  */

@@ -1,6 +1,5 @@
 package com.spacecruiser.game.view.GUI;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Peripheral;
@@ -13,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.controller.GameController;
@@ -138,6 +138,7 @@ public class GameView extends ScreenAdapter{
         this.hud = new GameHUD(game);
 
         camera = createCamera();
+
 
         shipView = new ShipView(game);
         bigAsteroidView = new BigAsteroidView(game);
