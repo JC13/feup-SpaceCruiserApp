@@ -3,19 +3,16 @@ package com.spacecruiser.game.view.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Peripheral;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.controller.GameController;
@@ -29,6 +26,7 @@ import com.spacecruiser.game.view.entities.PointsView;
 import com.spacecruiser.game.view.entities.ShieldView;
 import com.spacecruiser.game.view.entities.ShipView;
 
+
 import java.util.List;
 
 import static com.spacecruiser.game.controller.GameController.ARENA_HEIGHT;
@@ -39,7 +37,7 @@ import static com.spacecruiser.game.controller.GameController.ARENA_WIDTH;
  * A view representing the game screen. Draws all the other views and
  * controls the camera.
  */
-public class GameView extends ScreenAdapter {
+public class GameView extends ScreenAdapter{
 
 
     private static final float BTN_WIDTH = 100;
@@ -261,12 +259,14 @@ public class GameView extends ScreenAdapter {
             else
                 controller.rotateRight(delta);
         }
-
-        if (Gdx.input.getGyroscopeY() > 0) {
-            controller.rotateRight(delta * Gdx.input.getGyroscopeY());
-        }
-        if (Gdx.input.getGyroscopeY() < 0) {
-            controller.rotateLeft(delta * -Gdx.input.getGyroscopeY());
+        boolean gyroscopeAvail = Gdx.input.isPeripheralAvailable(Peripheral.Gyroscope);
+        if (gyroscopeAvail) {
+            if (Gdx.input.getGyroscopeZ() > 0) {
+                controller.rotateRight(delta * -Gdx.input.getGyroscopeZ()/5);
+            }
+            if (Gdx.input.getGyroscopeZ() < 0) {
+                controller.rotateLeft(delta * Gdx.input.getGyroscopeZ()/5);
+            }
         }
     }
 
