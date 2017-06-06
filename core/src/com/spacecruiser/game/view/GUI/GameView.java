@@ -146,6 +146,7 @@ public class GameView extends ScreenAdapter {
         mediumAsteroidView = new MediumAsteroidView(game);
         bonusShieldView = new ShieldView(game);
         bonusPointsView = new PointsView(game);
+
     }
 
     @Override
@@ -269,7 +270,7 @@ public class GameView extends ScreenAdapter {
         }
     }
 
-    private void createBackBtn(){
+    /*private void createBackBtn(){
         backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
 
@@ -279,7 +280,7 @@ public class GameView extends ScreenAdapter {
                 game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.MENU);
             }
         });
-    }
+    }*/
 
 
     /**

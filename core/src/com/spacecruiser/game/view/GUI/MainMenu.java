@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
@@ -113,6 +114,8 @@ public class MainMenu extends ScreenAdapter {
 
         createExitBtn();
         table.add(exitBtn).size(BTN_WIDTH,BTN_HEIGHT);
+        table.row();
+
 
         stage.addActor(table);
     }
@@ -125,7 +128,6 @@ public class MainMenu extends ScreenAdapter {
     private void createPlayBtn(){
         playBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/GreenButton-Hover.png"))));
-
         playBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent e, float x, float y){

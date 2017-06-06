@@ -16,9 +16,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.model.GameModel;
+
+//import sun.jvm.hotspot.memory.Space;
 
 /**
  * Game over screen to save user nick, score and date.
@@ -29,6 +32,8 @@ public class GameOver extends ScreenAdapter {
     private final static float BTN_WIDTH = 100;
     private final static float BTN_HEIGHT = 100;
 
+    private final static float SCRN_SET_TOP = Gdx.graphics.getHeight()/1.5f;
+    private final static float SCRN_SET_LEFT = -200;
     private SpaceCruiser game;
     private GameModel model;
 
@@ -45,15 +50,20 @@ public class GameOver extends ScreenAdapter {
 
         scoreLbl = new Label("SCORE",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreInfo = new Label(String.format("%04d",(int)model.getScore()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLbl.setFontScale(2,2);     scoreInfo.setFontScale(2,2);
 
         asteroidLbl = new Label("ASTEROIDS DESTROYED",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         asteroidInfo = new Label(String.format("%04d",model.getAsteroidsDestroyed()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        asteroidLbl.setFontScale(2,2);     asteroidInfo.setFontScale(2,2);
 
         shieldsLbl = new Label("SHIELDS PICKED UP",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         shieldsInfo = new Label(String.format("%04d", model.getShieldsPicked()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        shieldsLbl.setFontScale(2,2);     shieldsInfo.setFontScale(2,2);
 
         ptsLbl = new Label("POINTS PICKED UP",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         ptsInfo = new Label(String.format("%04d",model.getPtsPicked()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        ptsLbl.setFontScale(2,2);     ptsInfo.setFontScale(2,2);
+
     }
 
     @Override
@@ -84,10 +94,14 @@ public class GameOver extends ScreenAdapter {
 
         Table table = new Table();
         table.setFillParent(true);
+        table.padLeft(Align.center-150);
+        table.padRight(Align.center);
+        table.padTop(Align.center+400);
 
         table.add(scoreLbl).expandX();
         table.add(scoreInfo).expandX();
         table.row();
+
 
         table.add(asteroidLbl).expandX();
         table.add(asteroidInfo).expandX();
@@ -102,7 +116,10 @@ public class GameOver extends ScreenAdapter {
         table.row();
 
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padTop(Gdx.graphics.getHeight()+ 2*BTN_HEIGHT).padLeft(Gdx.graphics.getWidth()+ 4* BTN_WIDTH);
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padRight(-Gdx.graphics.getWidth());
+
+        //table.padTop(SCRN_SET_TOP).padLeft(SCRN_SET_LEFT);
+
 
         stage.addActor(table);
     }

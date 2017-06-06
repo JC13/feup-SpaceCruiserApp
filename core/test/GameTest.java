@@ -105,13 +105,13 @@ public class GameTest {
 
     }
 
-    @Test
+  /*  @Test
     public void testRotation(){
         assertEquals(0,((ShipModel)ship.getUserData()).getRotation(),0);
         controller.rotateRight(delta);
         assertEquals(ship.getAngle() - 10f * delta,model.getShip().getRotation(),0);
     }
-
+*/
 
 
 }

@@ -75,14 +75,14 @@ public class Splash extends ScreenAdapter{
         splashActor.setFillParent(true);
 
 
-        SequenceAction actions = new SequenceAction(sequence(fadeIn(2f), delay(1.5f),
+        SequenceAction actions = new SequenceAction(sequence(fadeIn(0.5f), delay(0.2f),
                 run(new Runnable() {
                     @Override
                     public void run() {
                         loadAssets();
                     }
                 }),
-                fadeOut(2f),
+                fadeOut(0.5f),
                 run(new Runnable(){
                      @Override
                     public void run(){

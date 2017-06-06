@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.spacecruiser.game.SpaceCruiser;
 
@@ -62,8 +63,12 @@ public class HelpView extends ScreenAdapter {
         Table table = new Table();
         table.setFillParent(true);
 
+        table.padLeft(Align.center-150);
+        table.padRight(Align.center);
+        table.padTop(Align.center+400);
+
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padTop(Gdx.graphics.getHeight()+ 3*BTN_HEIGHT).padLeft(Gdx.graphics.getWidth()+ 4* BTN_WIDTH);
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT)./*padTop(Gdx.graphics.getHeight()+ 3*BTN_HEIGHT).padLeft(Gdx.graphics.getWidth()+ 4* BTN_WIDTH)*/padRight(-Gdx.graphics.getWidth());
 
         stage.addActor(table);
     }
