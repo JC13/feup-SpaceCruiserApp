@@ -62,12 +62,14 @@ public class GameModel {
     private boolean gameOver = false;
 
     /**
-     * Constructs a game with a.space ship in a certain position and
+     * Constructs a game with a space ship in a certain position and
      * a certain number of asteroids in different sizes.
      *
      * @param x the x-coordinate of the space ship in meters
      * @param y the y-coordinate of the space ship in meters
      * @param asteroidCount The number of asteroids to create
+     * @param ptsCount The number of bonus points to create
+     * @param shieldsCount The number of the bonus shields to create
      */
     public GameModel(float x, float y, int asteroidCount, int ptsCount, int shieldsCount) {
         asteroids = new ArrayList<AsteroidModel>();
@@ -121,17 +123,31 @@ public class GameModel {
      */
     public void setScore(float points){ this.score = points;}
 
+    /**
+     * Increases the number of destroyed asteroids.
+     */
     public void increaseAsteroidsDestroyed(){
         this.asteroidsDestroyed++;
     }
 
+    /**
+     * Increases the number of bonus coins picked.
+     */
     public void increasePtsPicked(){
         this.ptsPicked++;
     }
 
+    /**
+     * Increases the number of bonus shields picked.
+     */
     public void increaseShieldsPicked(){
         this.shieldsPicked++;
     }
+
+    /**
+     * Removes an game entity from its data structure.
+     * @param model The game entity. It can be an asteroid, a shield or a point.
+     */
 
     public void remove(EntityModel model) {
 
@@ -149,7 +165,7 @@ public class GameModel {
     }
 
     /**
-     * Returns the asteroids.
+     * Returns the asteroids that remain in the game.
      *
      * @return the asteroid list
      */
@@ -158,21 +174,44 @@ public class GameModel {
     }
 
     /**
-     * Returns the bonus
+     * Returns the bonus points tht remain in the game.
      *
-     * @return the bonus list
+     * @return the bonus points list.
      */
     public List<PointsModel> getBonusPoints() { return points; }
 
+    /**
+     * Returns the bonus shields that remain in the game.
+     *
+     * @return  The bonus shields that remain in the game list.
+     */
+
     public List<ShieldModel> getBonusShields() { return shields; }
 
+    /**
+     * Returns the bonus shields picked by the ship.
+     *
+     * @return The picked bonus shields list.
+     */
     public int getShieldsPicked() {
         return shieldsPicked;
     }
 
+    /**
+     * Returns the bonus points picked by the ship.
+     *
+     * @return  The picked bonus points list.
+     */
+
     public int getPtsPicked() {
         return ptsPicked;
     }
+
+    /**
+     * Returns the asteroids destroyed by the ship.
+     *
+     * @return  The destroyed asteroids list.
+     */
 
     public int getAsteroidsDestroyed() {
         return asteroidsDestroyed;

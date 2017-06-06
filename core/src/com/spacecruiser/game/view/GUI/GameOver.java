@@ -24,7 +24,7 @@ import com.spacecruiser.game.model.GameModel;
 //import sun.jvm.hotspot.memory.Space;
 
 /**
- * Game over screen to save user nick, score and date.
+ * Game over screen to save score, points and shields picked and asteroids destroyed.
  */
 
 public class GameOver extends ScreenAdapter {
@@ -32,18 +32,37 @@ public class GameOver extends ScreenAdapter {
     private final static float BTN_WIDTH = 100;
     private final static float BTN_HEIGHT = 100;
 
-    private final static float SCRN_SET_TOP = Gdx.graphics.getHeight()/1.5f;
-    private final static float SCRN_SET_LEFT = -200;
+    /**
+     * The current game.
+     */
     private SpaceCruiser game;
+
+    /**
+     * The game with its elements put in position and their info.
+     */
     private GameModel model;
 
+    /**
+     * Lables to the respective info to be shown on this screen.
+     */
     private Label scoreLbl, scoreInfo, asteroidLbl, asteroidInfo, shieldsLbl, shieldsInfo, ptsLbl, ptsInfo;
 
+    /**
+     * The stage in which the table with the elements of this screen are added.
+     */
     private Stage stage;
 
+    /**
+     * The "back to Main Menu" button.
+     */
     private ImageButton backBtn;
 
 
+    /**
+     * Constructor of the GameOver screen, which creates the labels and sets their own settings.
+     * @param game  The game that ended.
+     * @param model The model game with the elements in their position and it respective info.
+     */
     public GameOver(SpaceCruiser game, GameModel model){
         this.game = game;
         this.model = model;
@@ -124,7 +143,10 @@ public class GameOver extends ScreenAdapter {
         stage.addActor(table);
     }
 
-
+    /**
+     * Creates the back button with the respective image to be shown on the screen and
+     * sets its action when clicked.
+     */
     private void createBackBtn(){
         backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
@@ -137,6 +159,9 @@ public class GameOver extends ScreenAdapter {
         });
     }
 
+    /**
+     * Draws the GameOver background with a specific image.
+     */
     private void drawbackground(){
         Texture background = game.getAssetManager().get("images/gameOverScreen.png");
         game.getBatch().draw(background,0,0,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH);

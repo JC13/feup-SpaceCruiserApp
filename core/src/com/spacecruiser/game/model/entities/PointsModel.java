@@ -20,7 +20,10 @@ public class PointsModel extends EntityModel {
         this.value = value;
     }
 
-
+    /**
+     * Returns the bonus score value of a point.
+     * @return  The bonus score.
+     */
     public int getValue(){
         return this.value;
     }

@@ -52,6 +52,9 @@ public class GameController implements ContactListener{
      */
     private static final float ACCELERATION_FORCE = 30f;
 
+    /**
+     * The game with its elements put in position and their info.
+     */
     private GameModel model;
     /**
      * The physics world controlled by this controller.
@@ -68,7 +71,9 @@ public class GameController implements ContactListener{
      */
     private float accumulator;
 
-
+    /**
+     * Number of bonus points picked.
+     */
     private int accumulatedPts = 0;
 
     /**
@@ -202,6 +207,11 @@ public class GameController implements ContactListener{
         accumulatedPts = 0;
     }
 
+    /**
+     * Processes what happens when the ship collides with a bonus coin.
+     * @param pts   The coin.
+     * @param ship  The ship.
+     */
     public void ptsShipCollision(Body pts, Body ship){
         PointsModel ptsModel = ((PointsModel) pts.getUserData());
         accumulatedPts += ptsModel.getValue();
@@ -209,12 +219,22 @@ public class GameController implements ContactListener{
         ptsModel.setToBeRemoved();
     }
 
+    /**
+     * Processes what happens when the ship collides with a bonus shield.
+     * @param shield   The shield.
+     * @param ship  The ship.
+     */
     public void shieldShipCollision(Body shield, Body ship){
         ((ShipModel) ship.getUserData()).setShielded(true);
         ((ShieldModel) shield.getUserData()).setToBeRemoved();
         model.increaseShieldsPicked();
     }
 
+    /**
+     * Processes what happens when the ship collides with an asteroid.
+     * @param asteroid   The asteroid.
+     * @param ship  The ship.
+     */
     public void asteroidsShipCollision(Body asteroid, Body ship){
         if(((ShipModel)ship.getUserData()).isShielded()){
             ((AsteroidModel)asteroid.getUserData()).setToBeRemoved();
@@ -225,6 +245,10 @@ public class GameController implements ContactListener{
             model.setGameOver();
         }
     }
+
+    /**
+     * Removes from the world all flagged bodies.
+     */
 
     public void removeFlagged() {
         Array<Body> bodies = new Array<Body>();

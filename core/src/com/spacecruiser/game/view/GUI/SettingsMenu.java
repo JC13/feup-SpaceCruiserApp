@@ -55,7 +55,6 @@ public class SettingsMenu extends ScreenAdapter{
      */
     private Stage stage;
 
-
     /**
      *  The volume slider.
      */
@@ -106,7 +105,9 @@ public class SettingsMenu extends ScreenAdapter{
         stage.getViewport().update(width,height);
     }
 
-
+    /**
+     * Creates the stage in which the elements table is put and adds this elements to it.
+     */
     public void createStage(){
         this.stage = new Stage(new FillViewport(SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH,new OrthographicCamera()));
         Table table = new Table();
@@ -124,6 +125,10 @@ public class SettingsMenu extends ScreenAdapter{
     }
 
 
+    /**
+     * Creates the back button with the respective image to be shown on the screen and
+     * sets its action when clicked.
+     */
     public void createBackBtn(){
         backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
@@ -136,6 +141,9 @@ public class SettingsMenu extends ScreenAdapter{
         });
     }
 
+    /**
+     * Creates the volume slider.
+     */
     public void createVolumeSlider(){
         Skin sliderSkin = new Skin(Gdx.files.internal("skins/uiskin.json"), (TextureAtlas)game.getAssetManager().get("skins/uiskin.atlas"));
         sliderSkin.add("uiskin", game.getAssetManager().get("skins/uiskin.png"));

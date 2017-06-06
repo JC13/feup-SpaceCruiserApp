@@ -38,6 +38,10 @@ public class ScreenManager {
      */
     private SettingsMenu settingsmenu;
 
+    /**
+     * The help view.
+     */
+
     private HelpView helpmenu;
 
 
@@ -60,6 +64,7 @@ public class ScreenManager {
 
     /**
      *  Sets the screen to be rendered by the game.
+     *  @param screen the screen type to be shown.
      */
     public void drawScreen(ActiveScreen screen){
 
@@ -105,6 +110,9 @@ public class ScreenManager {
         }
     }
 
+    /**
+     * Sets the gameView to null, so the game can start a new instance of it.
+     */
     public void newGame(){
         this.gameView = null;
     }

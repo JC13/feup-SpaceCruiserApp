@@ -82,9 +82,18 @@ public abstract class EntityModel {
         this.rotation = rotation;
     }
 
+    /**
+     * Checks if an entity is flagged to be removed.
+     *
+     * @return  True or false.
+     */
+
     public boolean isFlaggedToBeRemoved(){
         return toBeRemoved;
     }
 
+    /**
+     * Flags an entity to be removed.
+     */
     public void setToBeRemoved(){this.toBeRemoved = true;}
 }

@@ -40,7 +40,18 @@ public class ShipModel extends EntityModel {
         return accelerating;
     }
 
+    /**
+     * Sets the ship as shielded.
+     * @param isShielded  True or false.
+     */
+
     public void setShielded(boolean isShielded){this.shielded = isShielded;}
+
+    /**
+     * Checks if the ship is shielded.
+     *
+     * @return The boolean value.
+     */
 
     public boolean isShielded(){return this.shielded;}
 }

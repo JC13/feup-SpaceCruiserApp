@@ -27,15 +27,38 @@ public class GameHUD {
     private final static float HUD_VIEWPORT_WIDTH = 100;
     private final static float HUD_VIEWPORT_HEIGHT = 100;
 
+    /**
+     * The current game this HUD belongs to.
+     */
     private SpaceCruiser game;
+
+    /**
+     * The stage in which the camera and the table with the elements of the HUD are added.
+     */
     private Stage stage;
+    /**
+     * The table in which the elements of the HUD are added.
+     */
     private Table table;
+    /**
+     * The labels of the increasing score and the title.
+     */
     private Label scoreLbl, scoreInfo;
+
+    /**
+     * The score value to be put on the scoreInfo label.
+     */
     private int score;
 
+    /**
+     * The back button.
+     */
     private ImageButton backBtn;
 
-
+    /**
+     * Constructs an in-game HUD with the current score of the player and a back button.
+     * @param game The current game.
+     */
     public GameHUD(SpaceCruiser game){
         score = 0;
         scoreLbl = new Label("SCORE",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -56,6 +79,10 @@ public class GameHUD {
         stage.addActor(table);
     }
 
+    /**
+     * Creates the back button with the respective image to be shown on the screen and
+     * sets its action when clicked.
+     */
     private void createBackBtn(){
         backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
                 new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
@@ -68,7 +95,10 @@ public class GameHUD {
         });
     }
 
-
+    /**
+     * Updates the score in the label.
+     * @param score The new value to be put on the label.
+     */
     public void update(float score){
         this.score = (int)score;
 
@@ -78,6 +108,10 @@ public class GameHUD {
         stage.draw();
     }
 
+    /**
+     * Returns the stage of the elements.
+     * @return  The stage.
+     */
     public Stage getStage(){return this.stage;}
 
 }
