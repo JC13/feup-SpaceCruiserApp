@@ -32,6 +32,8 @@ import static java.lang.Math.sin;
  */
 
 public class GameController implements ContactListener{
+
+
     /**
      * The arena width in meters.
      */

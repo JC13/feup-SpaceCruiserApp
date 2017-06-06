@@ -6,7 +6,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.spacecruiser.game.model.entities.AsteroidModel;
 import com.spacecruiser.game.model.entities.EntityModel;
+import com.spacecruiser.game.model.entities.PointsModel;
+import com.spacecruiser.game.model.entities.ShieldModel;
+import com.spacecruiser.game.model.entities.ShipModel;
 
 import static com.spacecruiser.game.view.GUI.GameView.PIXEL_TO_METER;
 
@@ -20,6 +24,11 @@ public abstract class EntityBody {
      * The Box2D body that supports this body.
      */
     final Body body;
+
+    final short CATEGORY_PLAYER = 0x0001;  // 0000000000000001 in binary
+    final short CATEGORY_ASTEROID = 0x0002; // 0000000000000010 in binary
+    final short CATEGORY_SCENERY = 0x0004; // 0000000000000100 in binary
+
 
     /**
      * Constructs a body representing a model in a certain world.
@@ -35,6 +44,7 @@ public abstract class EntityBody {
 
         body = world.createBody(bodyDef);
         body.setUserData(model);
+
     }
 
     /**
@@ -69,6 +79,17 @@ public abstract class EntityBody {
         fixtureDef.density = density;
         fixtureDef.friction = friction;
         fixtureDef.restitution = restitution;
+
+        if (body.getUserData() instanceof AsteroidModel){
+            fixtureDef.filter.categoryBits = CATEGORY_ASTEROID;
+        }
+        else if(body.getUserData() instanceof ShieldModel || body.getUserData() instanceof PointsModel){
+            fixtureDef.isSensor = true;
+            fixtureDef.filter.categoryBits = CATEGORY_SCENERY;
+        }
+        else if(body.getUserData() instanceof ShipModel){
+            fixtureDef.filter.maskBits = CATEGORY_SCENERY | CATEGORY_PLAYER | CATEGORY_ASTEROID;
+        }
 
         body.createFixture(fixtureDef);
 
