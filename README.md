@@ -1,7 +1,7 @@
 # SpaceCruiser - Android game app 
 
 
-#Pre-development ideas
+# Pre-development ideas
 
 ## GUI DESIGN
     
@@ -155,23 +155,30 @@ Controls the physics aspect of the game.
 
 
 
-#Final project
+# Final project
 
-##Setup procedure for both project and game/app (how to install the development environment and how to install/run the game/app).
+## Setup procedure for both project and game/app (how to install the development environment and how to install/run the game/app).
 
 In order to be able to edit and work with the code one needs to install Android Studio (most recent version) and create the desired run configuration: the game runs both on desktop and android (we recommend the use of a real android device and not an emulator in order to use the gyroscope properly).
 
 
-##Development documentation (Updated UML diagrams, Design Patterns used, other relevant design decisions, major difficulties along the way, lessons learned, overall time spent developing, work distribution amongst team members, etc...)
+## Development documentation ( work distribution amongst team members, etc...)
 
 The updated UML<br>
 <img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
   
-###Design Patterns 
+### Design Patterns 
   
-  For design patterns we ended up using the MVC (model-view-controller). 
+  For design patterns we ended up using the MVC (model-view-controller). This allows for the correct division of the app into 3 interconnected sections or packages and along with it several benefits such as easier unti testing of the code as you can test only the controller methods and the respective changes to the model without needing the view. It also provides much needed structure to the code as well as making it easier to understand and extend in the future.
   
-##User manual (with screenshots explaining how to play/use the game/app).
+  Being a very graphical game, the project main dificulties were working with the provided layout managers by LibGDX which are the Table's. It is not as easy or intuitive as exepected thus giving a little bit more work than we planned. This resulted in lack of time to implement other funcionalities (like the highscores) giving the deadline.
+  
+  Overall, we spent over 80 hours developing (either writting code or designing graphical components). 
+  The work distribution was as it follows:
+    - Nelson Costa: code documentation, mobile movement (gyroscope) , creation of GUI components and UML, unit testing
+    - João Conde: code design & refactoring, screens & screen manager implementation, collisions, design of GUI components 
+  
+## User manual (with screenshots explaining how to play/use the game/app).
       
       
       
