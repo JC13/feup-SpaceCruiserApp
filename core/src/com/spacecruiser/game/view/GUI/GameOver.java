@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -21,7 +20,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.model.GameModel;
 
-//import sun.jvm.hotspot.memory.Space;
 
 /**
  * Game over screen to save score, points and shields picked and asteroids destroyed.
@@ -136,9 +134,6 @@ public class GameOver extends ScreenAdapter {
 
         createBackBtn();
         table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).padRight(-Gdx.graphics.getWidth());
-
-        //table.padTop(SCRN_SET_TOP).padLeft(SCRN_SET_LEFT);
-
 
         stage.addActor(table);
     }

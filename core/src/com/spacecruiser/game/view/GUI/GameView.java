@@ -10,9 +10,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.spacecruiser.game.SpaceCruiser;
 import com.spacecruiser.game.controller.GameController;
@@ -25,7 +22,6 @@ import com.spacecruiser.game.view.entities.MediumAsteroidView;
 import com.spacecruiser.game.view.entities.PointsView;
 import com.spacecruiser.game.view.entities.ShieldView;
 import com.spacecruiser.game.view.entities.ShipView;
-
 
 import java.util.List;
 
@@ -40,9 +36,6 @@ import static com.spacecruiser.game.controller.GameController.ARENA_WIDTH;
 public class GameView extends ScreenAdapter{
 
 
-    private static final float BTN_WIDTH = 100;
-
-    private static final float BTN_HEIGHT = 100;
 
     /**
      * Used to debug the position of the physics fixtures
@@ -115,10 +108,6 @@ public class GameView extends ScreenAdapter{
      * pixels in order to show fixtures in their correct places.
      */
     private Matrix4 debugCamera;
-
-    private ImageButton backBtn;
-
-    private Table table;
 
     private Stage stage;
 
@@ -260,6 +249,7 @@ public class GameView extends ScreenAdapter{
             else
                 controller.rotateRight(delta);
         }
+
         boolean gyroscopeAvail = Gdx.input.isPeripheralAvailable(Peripheral.Gyroscope);
         if (gyroscopeAvail) {
             if (Gdx.input.getGyroscopeZ() > 0) {
@@ -270,18 +260,6 @@ public class GameView extends ScreenAdapter{
             }
         }
     }
-
-    /*private void createBackBtn(){
-        backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Active.png"))),
-                new TextureRegionDrawable(new TextureRegion((Texture)game.getAssetManager().get("images/BlackButton-Hover.png"))));
-
-        backBtn.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent e, float x, float y){
-                game.getScreenManager().drawScreen(ScreenManager.ActiveScreen.MENU);
-            }
-        });
-    }*/
 
 
     /**
