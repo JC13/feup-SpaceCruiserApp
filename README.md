@@ -180,37 +180,43 @@ The updated UML<br>
     
     - João Conde: code design & refactoring, screens & screen manager implementation, collisions, design of GUI components, github repository setup
   
-## User manual (with screenshots explaining how to play/use the game/app).
-      
+## User manual
+
+Splash Screen<br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/splash.png" width="300"><br>
+
+A splash screen where we introduce the developers and meanwhile load the assets.
+
+
 MainMenu Screen<br>
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/mainmenu.png" width="300"><br>
 
 In the main menu you are allowed to either start/continue the game (if you didn't lose the last time it continues the same game), change options (control game volume), check game instructions or exit the application.
 
 
 
 Game Screen<br>
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/game.png" width="300"><br>
 
 In the game screen you can play our awesome game, interacting with all game elements aswell as being able to check your current score, displayed on a HUD. To go back to main menu you can use the back button and resume your game later via the play button on main menu.
 
 
 
 Options Screen<br>
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/options.png" width="300"><br>
 
 In the options screen we only implemented a volume slider, allowing the user to select desired volume, with the minimum being sound muted or maximum being... well... pretty loud.
 
 
 
 Help Screen<br>
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/help.png" width="300"><br>
 
 In the help screen we display basic game instructions such as what to collect and what to avoid, how to control the ship...
 
 
 
 Gameover Screen<br>
-<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/images/screenshots/gameover.png" width="300"><br>
 
 Unfortunately, if you lose, you get to see our gameover screen, which provides basic game statistics such as asteroids destroyed, shields and point bonus picked up and your score.
