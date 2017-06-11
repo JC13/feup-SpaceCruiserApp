@@ -1,6 +1,8 @@
 # SpaceCruiser - Android game app 
 
 
+#Pre-development ideas
+
 ## GUI DESIGN
     
    Listing of the main functionalities present on the GUI:
@@ -151,3 +153,28 @@ A concrete representation of an EntityBody representing the player spaceship.
 Controls the physics aspect of the game.    
    
 
+
+
+#Final project
+
+##Setup procedure for both project and game/app (how to install the development environment and how to install/run the game/app).
+
+In order to be able to edit and work with the code one needs to install Android Studio (most recent version) and create the desired run configuration: the game runs both on desktop and android (we recommend the use of a real android device and not an emulator in order to use the gyroscope properly).
+
+
+##Development documentation (Updated UML diagrams, Design Patterns used, other relevant design decisions, major difficulties along the way, lessons learned, overall time spent developing, work distribution amongst team members, etc...)
+
+The updated UML<br>
+<img src="https://github.com/JC13/LPOO1617_T3G13_SpaceCruiser/blob/master/UML/UML.png" width="300"><br>
+  
+###Design Patterns 
+  
+  For design patterns we ended up using the MVC (model-view-controller). 
+  
+##User manual (with screenshots explaining how to play/use the game/app).
+      
+      
+      
+      
+      
+      
