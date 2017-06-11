@@ -176,7 +176,7 @@ The updated UML<br>
   Overall, we spent over 80 hours developing (either writting code or designing graphical components). 
   The work distribution was as it follows:
   
-    - Nelson Costa: code documentation, mobile movement (gyroscope) , creation of GUI components and UML, unit testing
+    - Nelson Costa: code documentation, mobile movement (gyroscope), collisions filtering, creation of GUI components and UML, unit testing
     
     - João Conde: code design & refactoring, screens & screen manager implementation, collisions, design of GUI components, github repository setup
   
