@@ -1,6 +1,7 @@
 package com.spacecruiser.game.client;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 
@@ -14,6 +15,11 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new Game();
+                return new Game() {
+                        @Override
+                        public void create() {
+
+                        }
+                };
         }
 }

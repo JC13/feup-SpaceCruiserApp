@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.spacecruiser.game.SpaceCruiser;
+import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 
 /**
  *  A help view, instructions for the game.
@@ -83,7 +85,7 @@ public class HelpView extends ScreenAdapter {
         table.padTop(Align.center+400);
 
         createBackBtn();
-        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT)./*padTop(Gdx.graphics.getHeight()+ 3*BTN_HEIGHT).padLeft(Gdx.graphics.getWidth()+ 4* BTN_WIDTH)*/padRight(-Gdx.graphics.getWidth());
+        table.add(backBtn).size(BTN_WIDTH,BTN_HEIGHT).expand().bottom().right().padBottom(50);
 
         stage.addActor(table);
     }
@@ -109,6 +111,9 @@ public class HelpView extends ScreenAdapter {
      */
     private void drawInstructions(){
         Texture help = game.getAssetManager().get("images/helpmenu.png");
-        game.getBatch().draw(help,0,0,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.MENU_VIEWPORT_HEIGTH);
+        help.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        game.getBatch().draw(help,0,50,SpaceCruiser.MENU_VIEWPORT_WIDTH,SpaceCruiser.GAME_VIEWPORT_HEIGHT);
+
     }
 }
