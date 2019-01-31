@@ -1,8 +1,0 @@
-exclude:
-- /Documentation/script.js
-- /core/test/.*
-- /html/.*
-component_depth: 1
-languages:
-- java
-- javascript
